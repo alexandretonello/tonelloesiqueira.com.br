@@ -1,0 +1,2252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tonello & Siqueira — Valuation para PME</title>
+<meta name="description" content="Boutique brasileira de valuation, M&A advisory e planejamento sucessório para pequenas e médias empresas." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500&family=Manrope:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* Tonello & Siqueira — Valuation boutique landing
+   System: navy + warm cream + bronze accent
+   Type: Instrument Serif (display) + Geist (body) + Geist Mono (numerals/labels)
+*/
+
+:root {
+  --navy: #0E1A2B;
+  --navy-2: #16263D;
+  --cream: #F4EFE6;
+  --cream-2: #EBE4D6;
+  --paper: #FAF7F1;
+  --bronze: #B08862;
+  --bronze-2: #C9A07A;
+  --ink: #14202F;
+  --mute: #5C6470;
+  --line: rgba(20, 32, 47, 0.12);
+  --line-strong: rgba(20, 32, 47, 0.22);
+  --line-dark: rgba(244, 239, 230, 0.16);
+
+  --font-display: "Instrument Serif", "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --container: 1200px;
+  --pad: clamp(20px, 4vw, 64px);
+}
+
+/* ── reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+/* ── layout primitives ──────────────────────────────────── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 18px; height: 1px;
+  background: var(--bronze);
+}
+.eyebrow.on-dark { color: var(--bronze-2); }
+.eyebrow.on-dark::before { background: var(--bronze-2); }
+
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 6.4vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.h-display i { font-style: italic; color: var(--bronze); }
+.h-section {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.h-section i { font-style: italic; color: var(--bronze); }
+
+.lead {
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: var(--mute);
+  max-width: 56ch;
+}
+
+/* ── nav ───────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 247, 241, 0.78);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  display: inline-flex; align-items: baseline; gap: 6px;
+}
+.wordmark .amp { font-style: italic; color: var(--bronze); }
+.wordmark .sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-left: 10px;
+  align-self: center;
+}
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+  font-size: 14px; color: var(--ink);
+  position: relative;
+}
+.nav-links a:hover { color: var(--bronze); }
+
+.btn {
+  --bg: var(--navy);
+  --fg: var(--paper);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px;
+  background: var(--bg); color: var(--fg);
+  border: 1px solid var(--bg);
+  border-radius: 999px;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  transition: transform .2s, background .2s, color .2s;
+}
+.btn:hover { transform: translateY(-1px); background: var(--navy-2); }
+.btn .arr { transition: transform .2s; }
+.btn:hover .arr { transform: translate(2px, -2px); }
+.btn.ghost {
+  --bg: transparent; --fg: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn.ghost:hover { background: rgba(20,32,47,.04); }
+.btn.bronze {
+  --bg: var(--bronze); --fg: white;
+  border-color: var(--bronze);
+}
+.btn.bronze:hover { background: #9c7752; }
+
+/* ── hero ──────────────────────────────────────────────── */
+.hero {
+  padding: clamp(60px, 9vw, 120px) 0 clamp(50px, 7vw, 90px);
+  background:
+    radial-gradient(ellipse 60% 70% at 100% 0%, rgba(176,136,98,.08), transparent 60%),
+    var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.hero-eyebrow-row {
+  display: flex; gap: 18px; align-items: center;
+  margin-bottom: 28px;
+}
+.hero-title { margin-bottom: 24px; }
+.hero-sub { margin-bottom: 36px; }
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.hero-meta {
+  display: flex; gap: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+.hero-meta b {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 30px;
+  color: var(--ink);
+  letter-spacing: 0;
+  margin-bottom: 2px;
+  text-transform: none;
+}
+
+/* ── valuation card (calculadora) ──────────────────────── */
+.calc {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 28px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 30px 60px -30px rgba(14,26,43,.18),
+    0 8px 24px -12px rgba(14,26,43,.08);
+  position: relative;
+}
+.calc::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--bronze) 0, var(--bronze) 4px, transparent 4px);
+  border-radius: 4px 4px 0 0;
+}
+.calc-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 22px;
+}
+.calc-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+.calc-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+}
+.calc-field { margin-bottom: 18px; }
+.calc-field label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  margin-bottom: 8px;
+}
+.calc-field label .val {
+  font-family: var(--font-mono);
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.calc-field input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none; appearance: none;
+  background: transparent;
+  height: 18px;
+  margin: 0;
+}
+.calc-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(to right,
+    var(--navy) 0, var(--navy) var(--pct, 50%),
+    var(--line-strong) var(--pct, 50%), var(--line-strong) 100%);
+}
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 14px; height: 14px;
+  background: var(--bronze);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--bronze);
+  margin-top: -6px;
+}
+.calc-field input[type="range"]::-moz-range-track {
+  height: 2px; background: var(--line-strong);
+}
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px;
+  background: var(--bronze);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--bronze);
+}
+
+.calc-segments {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.calc-segments button {
+  background: transparent;
+  border: 0;
+  padding: 10px 8px;
+  font-size: 12.5px;
+  color: var(--mute);
+  border-right: 1px solid var(--line);
+  transition: background .15s, color .15s;
+}
+.calc-segments button:last-child { border-right: 0; }
+.calc-segments button:hover { background: rgba(176,136,98,.06); color: var(--ink); }
+.calc-segments button.active {
+  background: var(--navy); color: var(--paper);
+}
+
+.calc-result {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--line-strong);
+}
+.calc-result-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-bottom: 6px;
+}
+.calc-result-range {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.calc-result-range .sep { color: var(--bronze); margin: 0 8px; font-style: italic; }
+.calc-result-foot {
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.calc-cta {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.calc-cta-text {
+  font-size: 12.5px;
+  color: var(--mute);
+  max-width: 24ch;
+}
+
+/* ── stats strip ──────────────────────────────────────── */
+.stats {
+  background: var(--navy);
+  color: var(--paper);
+  padding: 60px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--bronze-2);
+  margin-bottom: 10px;
+}
+.stat-num .unit {
+  font-size: 0.5em;
+  color: var(--cream);
+  margin-left: 4px;
+  font-style: italic;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,.7);
+}
+
+/* ── section base ─────────────────────────────────────── */
+.section {
+  padding: clamp(70px, 9vw, 130px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.section.alt { background: var(--cream); }
+.section.dark { background: var(--navy); color: var(--paper); border-bottom: 0; }
+.section.dark .lead { color: rgba(244,239,230,.7); }
+.section.dark .h-section i { color: var(--bronze-2); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 70px;
+}
+.section-head .lead { margin-top: 0; }
+
+/* ── services ─────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.svc {
+  padding: 36px 32px 40px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  background: var(--paper);
+  transition: background .2s;
+}
+.section.alt .svc { background: var(--cream); }
+.svc:hover { background: white; }
+.section.alt .svc:hover { background: var(--paper); }
+
+.svc-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--bronze);
+  margin-bottom: 22px;
+}
+.svc-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.svc-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--mute);
+  margin: 0 0 22px;
+}
+.svc-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.svc-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--line-strong);
+  color: var(--mute);
+  border-radius: 2px;
+}
+
+/* ── process / como funciona ──────────────────────────── */
+.process-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-dark);
+}
+.process-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 200px;
+  gap: 40px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line-dark);
+  align-items: start;
+  transition: padding-left .2s;
+}
+.process-row:hover { padding-left: 12px; }
+.process-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--bronze-2);
+  padding-top: 6px;
+}
+.process-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.process-desc {
+  font-size: 14.5px;
+  color: rgba(244,239,230,.7);
+  line-height: 1.55;
+}
+.process-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(244,239,230,.55);
+  text-align: right;
+  padding-top: 6px;
+}
+
+/* ── about / partners ─────────────────────────────────── */
+.partners {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+.partner {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+.partner-photo {
+  aspect-ratio: 4/5;
+  background: var(--cream-2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.partner-photo svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+.partner-photo .photo-label {
+  position: absolute;
+  bottom: 14px; left: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  background: rgba(250,247,241,.92);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.partner-name {
+  font-family: var(--font-display);
+  font-size: 36px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.partner-role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--bronze);
+  margin-bottom: 18px;
+}
+.partner-bio {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--mute);
+  margin: 0 0 18px;
+}
+.partner-creds {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--mute);
+}
+.partner-creds span::before {
+  content: "—";
+  margin-right: 10px;
+  color: var(--bronze);
+}
+
+/* ── sectors ─────────────────────────────────────────── */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.sector {
+  padding: 26px 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 140px;
+  background: var(--paper);
+  transition: background .2s;
+}
+.section.alt .sector { background: var(--cream); }
+.sector:hover { background: white; }
+.section.alt .sector:hover { background: var(--paper); }
+
+.sector-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+.sector-count {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.sector-count b { color: var(--bronze); font-weight: 400; }
+
+/* ── faq ─────────────────────────────────────────────── */
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.faq-q .plus {
+  width: 28px; height: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  transition: background .2s, border-color .2s, transform .25s;
+}
+.faq-q .plus::before, .faq-q .plus::after {
+  content: ""; position: absolute;
+  background: var(--ink);
+}
+.faq-q .plus::before { width: 12px; height: 1px; }
+.faq-q .plus::after  { width: 1px; height: 12px; transition: transform .25s; }
+.faq-item.open .faq-q .plus {
+  background: var(--bronze);
+  border-color: var(--bronze);
+}
+.faq-item.open .faq-q .plus::before,
+.faq-item.open .faq-q .plus::after { background: white; }
+.faq-item.open .faq-q .plus::after { transform: rotate(90deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .25s;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mute);
+  max-width: 64ch;
+}
+.faq-item.open .faq-a {
+  max-height: 400px;
+  padding: 0 0 28px;
+}
+
+/* ── contato ─────────────────────────────────────────── */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-info .h-section { margin-bottom: 28px; }
+.contact-channels {
+  display: flex; flex-direction: column; gap: 22px;
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.contact-channel {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  font-size: 15px;
+}
+.contact-channel .lbl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.contact-channel .val { color: var(--ink); }
+
+.form {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  position: relative;
+}
+.form::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--bronze);
+}
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.wide { grid-column: 1 / -1; }
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+.form-field input, .form-field select, .form-field textarea {
+  font: inherit;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  width: 100%;
+  outline: none;
+  transition: border-color .15s;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+  border-color: var(--bronze);
+}
+.form-field textarea { resize: vertical; min-height: 80px; }
+.form-submit {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  margin-top: 8px;
+}
+.form-disclaimer {
+  font-size: 12px;
+  color: var(--mute);
+  max-width: 36ch;
+}
+.form-success {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+}
+.form-success .check {
+  width: 56px; height: 56px;
+  border: 1px solid var(--bronze);
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--bronze);
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-style: italic;
+}
+.form-success h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+.form-success p { color: var(--mute); margin: 0 auto; max-width: 36ch; }
+
+/* ── footer ─────────────────────────────────────────── */
+.footer {
+  background: var(--navy);
+  color: var(--paper);
+  padding: 80px 0 28px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.footer-top .wordmark { font-size: 28px; }
+.footer-top .wordmark .sub { color: rgba(244,239,230,.55); }
+.footer-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(244,239,230,.7);
+  margin-top: 14px;
+  max-width: 28ch;
+  line-height: 1.4;
+}
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze-2);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: rgba(244,239,230,.75);
+}
+.footer-col a:hover { color: var(--paper); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,.5);
+}
+
+/* ── responsive ─────────────────────────────────────── */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .section-head { grid-template-columns: 1fr; gap: 24px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .partners { grid-template-columns: 1fr; }
+  .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact { grid-template-columns: 1fr; gap: 40px; }
+  .process-row { grid-template-columns: 60px 1fr; gap: 20px; }
+  .process-row > :nth-child(3), .process-row > :nth-child(4) { display: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .form { padding: 24px; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .services-grid, .sectors-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .form { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; gap: 18px; }
+}
+
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  // Auto-inject a rail toggle when a <deck-stage> is on the page. The
+  // toggle drives the deck's per-viewer _railVisible via window message;
+  // state is mirrored from the same localStorage key the deck reads so
+  // the control reflects reality across reloads. The mechanism is the
+  // message — authors who want custom placement can post it directly
+  // and pass noDeckControls to suppress this one.
+  const hasDeckStage = React.useMemo(
+    () => typeof document !== 'undefined' && !!document.querySelector('deck-stage'),
+    [],
+  );
+  // deck-stage enables its rail in connectedCallback, but this panel can
+  // mount before that element has upgraded. The initial read catches the
+  // common case; the listener covers mounting first. (Older deck-stage.js
+  // copies still wait for the host's __omelette_rail_enabled postMessage —
+  // same listener handles those.)
+  const [railEnabled, setRailEnabled] = React.useState(
+    () => hasDeckStage && !!document.querySelector('deck-stage')?._railEnabled,
+  );
+  React.useEffect(() => {
+    if (!hasDeckStage || railEnabled) return undefined;
+    const onMsg = (e) => {
+      if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasDeckStage, railEnabled]);
+  const [railVisible, setRailVisible] = React.useState(() => {
+    try { return localStorage.getItem('deck-stage.railVisible') !== '0'; } catch (e) { return true; }
+  });
+  const toggleRail = (on) => {
+    setRailVisible(on);
+    window.postMessage({ type: '__deck_rail_visible', on }, '*');
+  };
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+          {hasDeckStage && railEnabled && !noDeckControls && (
+            <TweakSection label="Deck">
+              <TweakToggle label="Thumbnail rail" value={railVisible} onChange={toggleRail} />
+            </TweakSection>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+
+<script type="text/babel" data-presets="react">
+// Tonello & Siqueira — landing
+// Single React app; uses TweaksPanel for live theming.
+
+const { useState, useEffect, useMemo, useRef } = React;
+
+// ── helpers ──────────────────────────────────────────────
+const fmtBRL = (n) => {
+  if (n >= 1_000_000) return "R$ " + (n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1).replace(".", ",") + " mi";
+  if (n >= 1_000) return "R$ " + (n / 1_000).toFixed(0) + " mil";
+  return "R$ " + n.toFixed(0);
+};
+const fmtRangePart = (n) => {
+  if (n >= 1_000_000) {
+    const v = n / 1_000_000;
+    return v.toFixed(v >= 10 ? 0 : 1).replace(".", ",") + " mi";
+  }
+  return (n / 1_000).toFixed(0) + " mil";
+};
+
+// EBITDA multiples by sector (rough boutique-grade ranges for PME in Brazil)
+const SECTORS = {
+  servicos: { label: "Serviços B2B", mLow: 4.0, mHigh: 6.5 },
+  industria: { label: "Indústria",  mLow: 3.5, mHigh: 5.5 },
+  varejo:    { label: "Varejo / Consumo", mLow: 3.0, mHigh: 5.0 },
+  saude:     { label: "Saúde", mLow: 5.0, mHigh: 8.0 },
+  tecnologia:{ label: "Tecnologia", mLow: 6.0, mHigh: 10.5 },
+  alimentos: { label: "Alimentos & Bebidas", mLow: 4.5, mHigh: 7.0 },
+};
+
+// ── Nav ──────────────────────────────────────────────────
+function Nav() {
+  return (
+    <nav className="nav">
+      <div className="container nav-inner">
+        <a href="#top" className="wordmark">
+          Tonello <span className="amp">&amp;</span> Siqueira
+          <span className="sub">Valuation · M&amp;A</span>
+        </a>
+        <div className="nav-links">
+          <a href="#servicos">Serviços</a>
+          <a href="#metodologia">Metodologia</a>
+          <a href="#socios">Sócios</a>
+          <a href="#setores">Setores</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a href="#contato" className="btn">
+          Agendar diagnóstico
+          <span className="arr">↗</span>
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+// ── Calculadora rápida (Hero right) ─────────────────────
+function Calculator() {
+  const [revenue, setRevenue] = useState(12); // em milhões
+  const [margin, setMargin] = useState(18);   // % ebitda
+  const [sector, setSector] = useState("servicos");
+
+  const ebitda = (revenue * 1_000_000) * (margin / 100);
+  const { mLow, mHigh, label } = SECTORS[sector];
+  const low = ebitda * mLow;
+  const high = ebitda * mHigh;
+
+  // slider gradient fills
+  const revPct = ((revenue - 1) / (200 - 1)) * 100;
+  const marPct = ((margin - 2) / (50 - 2)) * 100;
+
+  return (
+    <div className="calc" id="estimativa">
+      <div className="calc-head">
+        <div className="calc-title">Estimativa rápida</div>
+        <div className="calc-tag">v1 · Múltiplo de EBITDA</div>
+      </div>
+
+      <div className="calc-field">
+        <label>
+          <span>Faturamento anual</span>
+          <span className="val">R$ {revenue.toFixed(revenue < 10 ? 1 : 0).replace(".", ",")} mi</span>
+        </label>
+        <input
+          type="range" min="1" max="200" step="1" value={revenue}
+          style={{ "--pct": revPct + "%" }}
+          onChange={(e) => setRevenue(parseFloat(e.target.value))}
+        />
+      </div>
+
+      <div className="calc-field">
+        <label>
+          <span>Margem EBITDA</span>
+          <span className="val">{margin}%</span>
+        </label>
+        <input
+          type="range" min="2" max="50" step="1" value={margin}
+          style={{ "--pct": marPct + "%" }}
+          onChange={(e) => setMargin(parseFloat(e.target.value))}
+        />
+      </div>
+
+      <div className="calc-field">
+        <label><span>Setor</span><span className="val">{label}</span></label>
+        <div className="calc-segments" style={{ gridTemplateColumns: "repeat(3,1fr)" }}>
+          {Object.entries(SECTORS).slice(0, 3).map(([k, v]) => (
+            <button
+              key={k}
+              className={sector === k ? "active" : ""}
+              onClick={() => setSector(k)}
+            >{v.label.split(" ")[0]}</button>
+          ))}
+        </div>
+        <div className="calc-segments" style={{ gridTemplateColumns: "repeat(3,1fr)", marginTop: -1 }}>
+          {Object.entries(SECTORS).slice(3).map(([k, v]) => (
+            <button
+              key={k}
+              className={sector === k ? "active" : ""}
+              onClick={() => setSector(k)}
+            >{v.label.split(" ")[0]}</button>
+          ))}
+        </div>
+      </div>
+
+      <div className="calc-result">
+        <div className="calc-result-label">Faixa indicativa de Enterprise Value</div>
+        <div className="calc-result-range">
+          R$ {fmtRangePart(low)}
+          <span className="sep">—</span>
+          R$ {fmtRangePart(high)}
+        </div>
+        <div className="calc-result-foot">
+          Baseado em múltiplos de {mLow}× a {mHigh}× EBITDA para {label.toLowerCase()}.
+          Estimativa preliminar — não substitui laudo técnico.
+        </div>
+      </div>
+
+      <div className="calc-cta">
+        <div className="calc-cta-text">Quer um valuation completo com laudo?</div>
+        <a href="#contato" className="btn bronze" style={{ padding: "10px 16px", fontSize: 13 }}>
+          Falar com sócio <span className="arr">↗</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ── Hero ─────────────────────────────────────────────────
+function Hero({ variant }) {
+  return (
+    <section className="hero" id="top">
+      <div className="container">
+        <div className="hero-grid">
+          <div>
+            <div className="hero-eyebrow-row">
+              <span className="eyebrow">Boutique de valuation · est. 2019</span>
+            </div>
+            <h1 className="h-display hero-title">
+              {variant === "direto" ? (
+                <>Quanto vale <i>de verdade</i><br />a sua empresa.</>
+              ) : variant === "afirmativo" ? (
+                <>Valuation que <i>sustenta</i><br />uma decisão de R$ milhões.</>
+              ) : (
+                <>Decisões de M&amp;A,<br />sucessão e captação<br /><i>começam aqui.</i></>
+              )}
+            </h1>
+            <p className="lead hero-sub">
+              Tonello &amp; Siqueira é uma boutique brasileira de valuation para
+              pequenas e médias empresas. Emitimos laudos técnicos, assessoramos
+              em M&amp;A e estruturamos a tese de valor que sustenta a próxima
+              etapa do seu negócio.
+            </p>
+            <div className="hero-ctas">
+              <a href="#contato" className="btn">
+                Agendar diagnóstico
+                <span className="arr">↗</span>
+              </a>
+              <a href="#metodologia" className="btn ghost">
+                Conhecer metodologia
+              </a>
+            </div>
+            <div className="hero-meta">
+              <div><b>+120</b>laudos emitidos</div>
+              <div><b>R$ 2,3 bi</b>em valor mediado</div>
+              <div><b>14</b>setores atendidos</div>
+            </div>
+          </div>
+          <Calculator />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Stats strip ─────────────────────────────────────────
+function Stats() {
+  return (
+    <section className="stats">
+      <div className="container stats-grid">
+        <div>
+          <div className="stat-num">12<span className="unit">anos</span></div>
+          <div className="stat-label">Atuação combinada dos sócios</div>
+        </div>
+        <div>
+          <div className="stat-num">120<span className="unit">+</span></div>
+          <div className="stat-label">Laudos técnicos emitidos</div>
+        </div>
+        <div>
+          <div className="stat-num">R$ 2,3<span className="unit">bi</span></div>
+          <div className="stat-label">Em valor de empresa avaliado</div>
+        </div>
+        <div>
+          <div className="stat-num">38<span className="unit">dias</span></div>
+          <div className="stat-label">Prazo médio de entrega de laudo</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Services ────────────────────────────────────────────
+const SERVICES = [
+  {
+    n: "01",
+    title: "Laudo de avaliação",
+    desc: "Laudo técnico (DCF, múltiplos, ativos) para suportar venda, entrada ou saída de sócio, planejamento sucessório e disputas.",
+    tags: ["DCF", "Múltiplos", "CPC 46"],
+  },
+  {
+    n: "02",
+    title: "Assessoria em M&A",
+    desc: "Estruturação da venda do negócio: tese, teaser, IM, mapeamento de compradores, NDA, due diligence e negociação até o closing.",
+    tags: ["Sell-side", "Buy-side", "Closing"],
+  },
+  {
+    n: "03",
+    title: "Captação & investimento",
+    desc: "Valuation para rodadas de capital, modelagem financeira, suporte a deck e negociação com fundos e investidores estratégicos.",
+    tags: ["Equity", "Cap table", "Deck"],
+  },
+  {
+    n: "04",
+    title: "Planejamento sucessório",
+    desc: "Avaliação da empresa para divisão patrimonial, holdings familiares, doação em vida e governança entre gerações.",
+    tags: ["Holding", "Família", "Governança"],
+  },
+  {
+    n: "05",
+    title: "Reestruturação societária",
+    desc: "Entrada e saída de sócios, fusão, cisão, reorganização de quotas e diligência financeira para suportar movimentos societários.",
+    tags: ["Cisão", "Fusão", "Quotas"],
+  },
+  {
+    n: "06",
+    title: "Diagnóstico de valor",
+    desc: "Análise focada que identifica drivers de valor, riscos e quick wins para o dono que quer subir o preço da empresa em 12–24 meses.",
+    tags: ["Drivers", "Riscos", "Roadmap"],
+  },
+];
+
+function Services() {
+  return (
+    <section className="section" id="servicos">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 24 }}>Serviços</div>
+            <h2 className="h-section">
+              Seis frentes,<br />
+              um único <i>princípio:</i><br />
+              decisão informada.
+            </h2>
+          </div>
+          <p className="lead">
+            Trabalhamos com pequenas e médias empresas em momentos
+            de inflexão — venda, captação, sucessão, disputas societárias.
+            Cada entrega é desenhada para sustentar uma conversa difícil
+            com investidores, sócios, herdeiros ou o judiciário.
+          </p>
+        </div>
+
+        <div className="services-grid">
+          {SERVICES.map((s) => (
+            <div className="svc" key={s.n}>
+              <div className="svc-num">{s.n}</div>
+              <h3 className="svc-title">{s.title}</h3>
+              <p className="svc-desc">{s.desc}</p>
+              <div className="svc-tags">
+                {s.tags.map((t) => <span className="svc-tag" key={t}>{t}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Methodology / processo ──────────────────────────────
+const STEPS = [
+  { n: "01", title: "Diagnóstico", meta: "Semana 1",
+    desc: "Conversa inicial com o dono, leitura dos demonstrativos dos últimos 3 anos e definição de escopo, finalidade e cronograma." },
+  { n: "02", title: "Modelagem", meta: "Semanas 2–4",
+    desc: "Construção do modelo financeiro: projeção de caixa, normalizações, premissas setoriais e análise de risco. Discussão semanal com o dono." },
+  { n: "03", title: "Avaliação", meta: "Semanas 4–5",
+    desc: "Aplicação de DCF, múltiplos comparáveis de mercado e abordagem patrimonial. Triangulação dos métodos e teste de sensibilidade." },
+  { n: "04", title: "Entrega & defesa", meta: "Semana 6",
+    desc: "Apresentação do laudo, defesa frente a contrapartes (compradores, sócios, advogados) e suporte na negociação até a conclusão." },
+];
+
+function Methodology() {
+  return (
+    <section className="section dark" id="metodologia">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow on-dark" style={{ marginBottom: 24 }}>Metodologia</div>
+            <h2 className="h-section">
+              Um processo<br />
+              de seis semanas,<br />
+              feito a <i>quatro mãos.</i>
+            </h2>
+          </div>
+          <p className="lead">
+            Cada projeto é conduzido diretamente por um dos sócios — nada
+            de equipes terceirizadas ou júniors aprendendo no seu caso.
+            Você fala com quem assina o laudo, do briefing até a defesa.
+          </p>
+        </div>
+
+        <div className="process-list">
+          {STEPS.map((s) => (
+            <div className="process-row" key={s.n}>
+              <div className="process-num">{s.n}</div>
+              <h3 className="process-title">{s.title}</h3>
+              <p className="process-desc">{s.desc}</p>
+              <div className="process-meta">{s.meta}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Partners portrait placeholders (striped SVG) ────────
+function PortraitPlaceholder({ initials, hue = 32 }) {
+  return (
+    <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id={`stripes-${initials}`} width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+          <rect width="14" height="14" fill="#EBE4D6" />
+          <rect width="7" height="14" fill="#E0D6C2" />
+        </pattern>
+      </defs>
+      <rect width="400" height="500" fill={`url(#stripes-${initials})`} />
+      <text x="50%" y="50%"
+        textAnchor="middle" dominantBaseline="central"
+        fontFamily="Instrument Serif, serif" fontStyle="italic"
+        fontSize="180" fill="#0E1A2B" opacity="0.32">
+        {initials}
+      </text>
+    </svg>
+  );
+}
+
+function Partners() {
+  return (
+    <section className="section alt" id="socios">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 24 }}>Sócios</div>
+            <h2 className="h-section">
+              Dois sócios,<br />
+              um <i>compromisso.</i>
+            </h2>
+          </div>
+          <p className="lead">
+            Tonello &amp; Siqueira nasce da soma de duas trajetórias
+            complementares: corporate finance e M&amp;A advisory. Você
+            sempre fala com um dos sócios — do primeiro café ao closing.
+          </p>
+        </div>
+
+        <div className="partners">
+          <div className="partner">
+            <div className="partner-photo">
+              <PortraitPlaceholder initials="T" />
+              <div className="photo-label">retrato · tonello</div>
+            </div>
+            <div className="partner-role">Sócio · Valuation &amp; Modelagem</div>
+            <h3 className="partner-name">— Tonello</h3>
+            <p className="partner-bio">
+              Especialista em modelagem financeira e laudos técnicos. Atuou
+              em corporate finance em consultorias de grande porte antes de
+              fundar a boutique. Conduz pessoalmente cada laudo emitido pela
+              firma.
+            </p>
+            <div className="partner-creds">
+              <span>Engenharia + MBA em Finanças</span>
+              <span>+ 8 anos em corporate finance</span>
+              <span>Certificações: CGA, CPA-20</span>
+            </div>
+          </div>
+
+          <div className="partner">
+            <div className="partner-photo">
+              <PortraitPlaceholder initials="S" />
+              <div className="photo-label">retrato · felipe siqueira</div>
+            </div>
+            <div className="partner-role">Sócio · M&amp;A &amp; Negociação</div>
+            <h3 className="partner-name">Felipe Siqueira</h3>
+            <p className="partner-bio">
+              Conduz transações de M&amp;A do mapeamento de compradores até
+              o closing. Combina background financeiro com forte experiência
+              em negociação, sustentação de valor e defesa de tese frente a
+              fundos e estratégicos.
+            </p>
+            <div className="partner-creds">
+              <span>Economia + Pós em Finanças Corporativas</span>
+              <span>+ 6 anos em M&amp;A advisory</span>
+              <span>+ 40 transações concluídas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Sectors ─────────────────────────────────────────────
+const SECTOR_LIST = [
+  { name: "Serviços B2B", count: 22 },
+  { name: "Indústria leve", count: 18 },
+  { name: "Saúde", count: 14 },
+  { name: "Tecnologia & SaaS", count: 12 },
+  { name: "Alimentos & Bebidas", count: 11 },
+  { name: "Varejo especializado", count: 10 },
+  { name: "Logística", count: 9 },
+  { name: "Educação", count: 7 },
+];
+
+function Sectors() {
+  return (
+    <section className="section" id="setores">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 24 }}>Setores</div>
+            <h2 className="h-section">
+              Onde temos<br />
+              <i>cicatriz</i> de campo.
+            </h2>
+          </div>
+          <p className="lead">
+            Atuamos em 8 setores principais para PMEs com faturamento entre
+            R$ 5 milhões e R$ 250 milhões. Os números abaixo refletem os
+            laudos emitidos e transações assessoradas até hoje.
+          </p>
+        </div>
+
+        <div className="sectors-grid">
+          {SECTOR_LIST.map((s) => (
+            <div className="sector" key={s.name}>
+              <div className="sector-name">{s.name}</div>
+              <div className="sector-count"><b>{s.count}</b> projetos</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── FAQ ────────────────────────────────────────────────
+const FAQ_ITEMS = [
+  {
+    q: "Quanto custa um laudo de valuation?",
+    a: "O investimento depende do porte e da complexidade da empresa. Para PMEs entre R$ 5 mi e R$ 50 mi de faturamento, projetos costumam variar entre R$ 25 mil e R$ 80 mil, dependendo do escopo (laudo único, suporte em negociação, due diligence financeira). Mandamos uma proposta personalizada após o diagnóstico inicial.",
+  },
+  {
+    q: "Quanto tempo leva o processo?",
+    a: "Um laudo completo, desde o briefing até a defesa frente à contraparte, leva tipicamente de 4 a 6 semanas. Diagnósticos preliminares de valor podem ser entregues em 10 a 15 dias úteis.",
+  },
+  {
+    q: "Que documentos vocês precisam ver?",
+    a: "Demonstrativos financeiros dos últimos 3 anos (DRE, balanço, fluxo de caixa), contrato social, organograma societário, principais contratos comerciais, planejamento orçamentário e — quando disponível — projeção de caixa futura.",
+  },
+  {
+    q: "Vocês atuam em quais regiões do Brasil?",
+    a: "Atendemos clientes em todo o território nacional. O trabalho é conduzido majoritariamente de forma remota, com reuniões presenciais em momentos-chave do projeto — kickoff, defesa do laudo e fechamento da transação.",
+  },
+  {
+    q: "O laudo serve para uso jurídico ou perante a Receita Federal?",
+    a: "Sim. Nossos laudos seguem o CPC 46 (Mensuração do Valor Justo) e podem ser usados em disputas societárias, planejamento sucessório, integralização de capital, holdings familiares e, com adaptações específicas, em contextos fiscais.",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState(0);
+  return (
+    <section className="section alt" id="faq">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 24 }}>Dúvidas comuns</div>
+            <h2 className="h-section">
+              Antes de<br />
+              marcar uma <i>conversa.</i>
+            </h2>
+          </div>
+          <p className="lead">
+            As perguntas que mais ouvimos no primeiro café. Se a sua
+            não estiver aqui, é só mandar — respondemos pessoalmente
+            em até um dia útil.
+          </p>
+        </div>
+
+        <div className="faq-list">
+          {FAQ_ITEMS.map((item, i) => (
+            <div className={`faq-item ${open === i ? "open" : ""}`} key={i}>
+              <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
+                <span>{item.q}</span>
+                <span className="plus" aria-hidden="true"></span>
+              </button>
+              <div className="faq-a">{item.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Contact ────────────────────────────────────────────
+function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({
+    nome: "", empresa: "", email: "", telefone: "",
+    faturamento: "", objetivo: "Valuation para venda", mensagem: ""
+  });
+  const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  return (
+    <section className="section" id="contato">
+      <div className="container">
+        <div className="contact">
+          <div className="contact-info">
+            <div className="eyebrow" style={{ marginBottom: 24 }}>Contato</div>
+            <h2 className="h-section">
+              Agende um<br />
+              diagnóstico<br />
+              <i>gratuito.</i>
+            </h2>
+            <p className="lead" style={{ marginTop: 24 }}>
+              Conversa de 30 minutos com um dos sócios. Sem compromisso e
+              sem fórmula pronta — saímos da chamada com uma indicação de
+              faixa de valor e dos próximos passos para o seu caso.
+            </p>
+
+            <div className="contact-channels">
+              <div className="contact-channel">
+                <div className="lbl">Whatsapp</div>
+                <div className="val">+55 (11) 9•••• ••••</div>
+              </div>
+              <div className="contact-channel">
+                <div className="lbl">E-mail</div>
+                <div className="val">contato@tonelloesiqueira.com.br</div>
+              </div>
+              <div className="contact-channel">
+                <div className="lbl">Escritório</div>
+                <div className="val">Av. Brigadeiro Faria Lima, São Paulo · SP</div>
+              </div>
+              <div className="contact-channel">
+                <div className="lbl">Resposta</div>
+                <div className="val">Até 1 dia útil, sempre por um sócio</div>
+              </div>
+            </div>
+          </div>
+
+          <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+            {submitted ? (
+              <div className="form-success">
+                <div className="check"><i>✓</i></div>
+                <h3>Recebido. Obrigado.</h3>
+                <p>Um dos sócios responde diretamente em até um dia útil para agendar a conversa.</p>
+              </div>
+            ) : (
+              <>
+                <div className="form-field">
+                  <label>Nome completo</label>
+                  <input type="text" value={form.nome} onChange={update("nome")} placeholder="Seu nome" required />
+                </div>
+                <div className="form-field">
+                  <label>Empresa</label>
+                  <input type="text" value={form.empresa} onChange={update("empresa")} placeholder="Razão social" required />
+                </div>
+                <div className="form-field">
+                  <label>E-mail corporativo</label>
+                  <input type="email" value={form.email} onChange={update("email")} placeholder="voce@empresa.com.br" required />
+                </div>
+                <div className="form-field">
+                  <label>Telefone</label>
+                  <input type="tel" value={form.telefone} onChange={update("telefone")} placeholder="(11) 9•••• ••••" />
+                </div>
+                <div className="form-field">
+                  <label>Faturamento anual</label>
+                  <select value={form.faturamento} onChange={update("faturamento")}>
+                    <option value="">Selecione uma faixa</option>
+                    <option>Até R$ 5 milhões</option>
+                    <option>R$ 5 mi – R$ 25 mi</option>
+                    <option>R$ 25 mi – R$ 100 mi</option>
+                    <option>R$ 100 mi – R$ 250 mi</option>
+                    <option>Acima de R$ 250 mi</option>
+                  </select>
+                </div>
+                <div className="form-field">
+                  <label>Objetivo principal</label>
+                  <select value={form.objetivo} onChange={update("objetivo")}>
+                    <option>Valuation para venda</option>
+                    <option>Captação de investimento</option>
+                    <option>Sucessão familiar</option>
+                    <option>Entrada / saída de sócio</option>
+                    <option>Disputa judicial</option>
+                    <option>Outro</option>
+                  </select>
+                </div>
+                <div className="form-field wide">
+                  <label>Conte sobre o seu caso</label>
+                  <textarea value={form.mensagem} onChange={update("mensagem")} placeholder="Resumo do contexto, prazo e o que você precisa decidir." />
+                </div>
+                <div className="form-submit">
+                  <div className="form-disclaimer">
+                    Suas informações ficam confidenciais. Não compartilhamos com terceiros nem usamos para marketing.
+                  </div>
+                  <button type="submit" className="btn bronze">
+                    Enviar pedido
+                    <span className="arr">↗</span>
+                  </button>
+                </div>
+              </>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Footer ─────────────────────────────────────────────
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-top">
+          <div>
+            <div className="wordmark">
+              Tonello <span className="amp">&amp;</span> Siqueira
+              <span className="sub">Valuation · M&amp;A</span>
+            </div>
+            <p className="footer-tagline">
+              Boutique brasileira de valuation para empresas que estão
+              prestes a tomar uma decisão importante.
+            </p>
+          </div>
+          <div className="footer-col">
+            <h4>Navegação</h4>
+            <ul>
+              <li><a href="#servicos">Serviços</a></li>
+              <li><a href="#metodologia">Metodologia</a></li>
+              <li><a href="#socios">Sócios</a></li>
+              <li><a href="#setores">Setores</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>Contato</h4>
+            <ul>
+              <li><a href="#contato">Agendar diagnóstico</a></li>
+              <li><a href="#">Whatsapp</a></li>
+              <li><a href="mailto:contato@tonelloesiqueira.com.br">E-mail</a></li>
+              <li><a href="#">Linkedin</a></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Política de privacidade</a></li>
+              <li><a href="#">Termos de uso</a></li>
+              <li><a href="#">Confidencialidade</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <div>© 2025 Tonello &amp; Siqueira Consultoria Ltda</div>
+          <div>São Paulo · SP · Brasil</div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── App with Tweaks ────────────────────────────────────
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": ["#0E1A2B", "#F4EFE6", "#B08862"],
+  "displayFont": "Instrument Serif",
+  "bodyFont": "Geist",
+  "heroVariant": "decisoes"
+}/*EDITMODE-END*/;
+
+const PALETTES = [
+  ["#0E1A2B", "#F4EFE6", "#B08862"],  // navy + cream + bronze (classic)
+  ["#1A1A1A", "#F0EBE0", "#C9A05E"],  // black + cream + gold (premium)
+  ["#1B2E27", "#F1EDE3", "#9C7B4F"],  // forest + cream + bronze (stable)
+  ["#2A2D33", "#F6F4EF", "#3E5C76"],  // graphite + white + steel blue
+];
+
+const DISPLAY_FONTS = ["Instrument Serif", "Cormorant Garamond", "Playfair Display", "EB Garamond"];
+const BODY_FONTS = ["Geist", "Inter Tight", "Manrope", "IBM Plex Sans"];
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  useEffect(() => {
+    const [navy, cream, bronze] = t.palette;
+    const root = document.documentElement.style;
+    root.setProperty("--navy", navy);
+    root.setProperty("--cream", cream);
+    root.setProperty("--paper", lighten(cream, 0.04));
+    root.setProperty("--cream-2", darken(cream, 0.04));
+    root.setProperty("--bronze", bronze);
+    root.setProperty("--bronze-2", lighten(bronze, 0.08));
+    root.setProperty("--navy-2", lighten(navy, 0.05));
+    root.setProperty("--font-display", `"${t.displayFont}", serif`);
+    root.setProperty("--font-body", `"${t.bodyFont}", system-ui, sans-serif`);
+  }, [t]);
+
+  return (
+    <>
+      <Nav />
+      <Hero variant={t.heroVariant} />
+      <Stats />
+      <Services />
+      <Methodology />
+      <Partners />
+      <Sectors />
+      <FAQ />
+      <Contact />
+      <Footer />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Paleta" />
+        <TweakColor
+          label="Esquema"
+          value={t.palette}
+          options={PALETTES}
+          onChange={(v) => setTweak("palette", v)}
+        />
+
+        <TweakSection label="Tipografia" />
+        <TweakSelect
+          label="Display"
+          value={t.displayFont}
+          options={DISPLAY_FONTS}
+          onChange={(v) => setTweak("displayFont", v)}
+        />
+        <TweakSelect
+          label="Corpo"
+          value={t.bodyFont}
+          options={BODY_FONTS}
+          onChange={(v) => setTweak("bodyFont", v)}
+        />
+
+        <TweakSection label="Hero" />
+        <TweakRadio
+          label="Headline"
+          value={t.heroVariant}
+          options={["decisoes", "direto", "afirmativo"]}
+          onChange={(v) => setTweak("heroVariant", v)}
+        />
+      </TweaksPanel>
+    </>
+  );
+}
+
+// tiny color helpers (hex only)
+function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+function hexToRgb(h) {
+  const m = h.replace("#", "");
+  return [parseInt(m.slice(0,2),16), parseInt(m.slice(2,4),16), parseInt(m.slice(4,6),16)];
+}
+function rgbToHex(r,g,b) {
+  return "#" + [r,g,b].map(v => clamp(Math.round(v),0,255).toString(16).padStart(2,"0")).join("");
+}
+function lighten(h, amt) {
+  const [r,g,b] = hexToRgb(h);
+  return rgbToHex(r + (255-r)*amt, g + (255-g)*amt, b + (255-b)*amt);
+}
+function darken(h, amt) {
+  const [r,g,b] = hexToRgb(h);
+  return rgbToHex(r*(1-amt), g*(1-amt), b*(1-amt));
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+</script>
+
+</body>
+</html>
