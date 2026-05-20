@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Template PowerPoint — Tonello & Siqueira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/json" id="speaker-notes">
+[
+  "Slide de abertura. Use para qualquer apresentação institucional.",
+  "Sumário ou agenda da apresentação.",
+  "Apresentação dos sócios e da boutique.",
+  "Lista de serviços oferecidos.",
+  "Metodologia de trabalho em 4 etapas.",
+  "Setores e cases atendidos.",
+  "Slide de transição entre seções.",
+  "Slide de fechamento com call-to-action."
+]
+</script>
+
+<style>
+  :root{
+    --navy:#0E1A2B;--cream:#F4EFE6;--paper:#FAF7F1;--bronze:#B08862;
+    --bronze-2:#C9A07A;--ink:#14202F;--mute:#5C6470;--line:rgba(20,32,47,.14);
+    --line-dark:rgba(244,239,230,.16);
+    --fd:"Instrument Serif",Georgia,serif;
+    --fb:"Geist",system-ui,sans-serif;
+    --fm:"Geist Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  deck-stage{--deck-bg:#1a1a1a}
+
+  section{
+    width:1920px;height:1080px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--fb);
+    position:relative;
+    overflow:hidden;
+    padding:90px 120px;
+  }
+  section.dark{background:var(--navy);color:var(--paper)}
+  section.cream{background:var(--cream)}
+
+  /* Master chrome */
+  .slide-mark{
+    position:absolute;top:50px;left:120px;
+    font-family:var(--fd);font-size:30px;line-height:1;
+  }
+  .slide-mark .amp{font-style:italic;color:var(--bronze)}
+  section.dark .slide-mark{color:var(--paper)}
+  .slide-mark .sub{
+    display:block;font-family:var(--fm);font-size:12px;
+    text-transform:uppercase;letter-spacing:0.2em;color:var(--mute);margin-top:6px;
+  }
+  section.dark .slide-mark .sub{color:rgba(244,239,230,.55)}
+
+  .slide-meta{
+    position:absolute;top:60px;right:120px;
+    display:flex;gap:50px;
+    font-family:var(--fm);font-size:13px;
+    text-transform:uppercase;letter-spacing:0.14em;color:var(--mute);
+  }
+  section.dark .slide-meta{color:rgba(244,239,230,.55)}
+  .slide-meta b{color:var(--bronze);font-weight:500}
+
+  .slide-foot{
+    position:absolute;bottom:60px;left:120px;right:120px;
+    border-top:1px solid var(--line);padding-top:24px;
+    display:flex;justify-content:space-between;
+    font-family:var(--fm);font-size:13px;
+    text-transform:uppercase;letter-spacing:0.14em;color:var(--mute);
+  }
+  section.dark .slide-foot{border-top-color:var(--line-dark);color:rgba(244,239,230,.55)}
+  .slide-foot .num{
+    font-family:var(--fd);font-style:italic;font-size:24px;
+    color:var(--bronze);text-transform:none;letter-spacing:0;line-height:1;
+  }
+
+  /* Typography */
+  .eyebrow{
+    font-family:var(--fm);font-size:18px;text-transform:uppercase;
+    letter-spacing:0.14em;color:var(--bronze);
+    display:inline-flex;align-items:center;gap:14px;margin-bottom:32px;
+  }
+  .eyebrow::before{content:"";width:40px;height:1px;background:var(--bronze)}
+  section.dark .eyebrow{color:var(--bronze-2)}
+  section.dark .eyebrow::before{background:var(--bronze-2)}
+
+  h1{
+    font-family:var(--fd);font-weight:400;
+    font-size:140px;line-height:0.98;letter-spacing:-0.015em;
+    margin:0;
+  }
+  h1 i{font-style:italic;color:var(--bronze)}
+  section.dark h1 i{color:var(--bronze-2)}
+
+  h2{
+    font-family:var(--fd);font-weight:400;
+    font-size:96px;line-height:1.02;letter-spacing:-0.01em;
+    margin:0;
+  }
+  h2 i{font-style:italic;color:var(--bronze)}
+  section.dark h2 i{color:var(--bronze-2)}
+
+  .lead{
+    font-size:28px;line-height:1.45;color:var(--mute);
+    max-width:780px;
+  }
+  section.dark .lead{color:rgba(244,239,230,.7)}
+
+  /* ── SLIDE 1: Cover ── */
+  .slide-cover .content{
+    height:100%;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .slide-cover .mid{flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:60px}
+  .slide-cover .bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding-top:30px;border-top:1px solid var(--line)}
+  .slide-cover .bottom div{font-family:var(--fm);font-size:14px;text-transform:uppercase;letter-spacing:0.14em;color:var(--mute)}
+  .slide-cover .bottom div b{
+    display:block;font-family:var(--fd);font-style:italic;font-weight:400;
+    font-size:34px;color:var(--ink);text-transform:none;letter-spacing:0;margin-bottom:4px;
+  }
+  .slide-cover h1{font-size:170px;line-height:0.95}
+
+  /* ── SLIDE 2: Agenda ── */
+  .agenda-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:30px}
+  .agenda-list{display:flex;flex-direction:column}
+  .agenda-row{
+    display:grid;grid-template-columns:60px 1fr;gap:30px;
+    padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .agenda-row:first-child{border-top:1px solid var(--line)}
+  .agenda-num{font-family:var(--fm);font-size:16px;letter-spacing:0.14em;color:var(--bronze)}
+  .agenda-title{font-family:var(--fd);font-size:42px;line-height:1.05;letter-spacing:-0.01em}
+  .agenda-title i{font-style:italic;color:var(--bronze)}
+
+  /* ── SLIDE 3: Sócios ── */
+  .partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:30px}
+  .partner-card{display:flex;flex-direction:column;gap:18px}
+  .partner-portrait{
+    aspect-ratio:4/5;background:var(--cream);
+    position:relative;overflow:hidden;border-radius:2px;
+  }
+  .partner-portrait .initial{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--fd);font-style:italic;font-size:280px;color:rgba(20,32,47,.18);
+  }
+  .partner-portrait .stripe{
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(35deg,#EBE4D6 0 18px,#E0D6C2 18px 36px);
+  }
+  .partner-portrait .ph-label{
+    position:absolute;bottom:18px;left:18px;
+    font-family:var(--fm);font-size:12px;text-transform:uppercase;letter-spacing:0.14em;
+    color:var(--mute);background:rgba(250,247,241,.92);padding:6px 12px;border-radius:2px;
+  }
+  .partner-role{font-family:var(--fm);font-size:16px;text-transform:uppercase;letter-spacing:0.14em;color:var(--bronze)}
+  .partner-name{font-family:var(--fd);font-size:60px;line-height:1;letter-spacing:-0.01em;margin:0}
+  .partner-bio{font-size:22px;line-height:1.45;color:var(--mute)}
+
+  /* ── SLIDE 4: Services ── */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+    margin-top:30px;
+  }
+  .svc{
+    padding:38px 36px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .svc-num{font-family:var(--fm);font-size:14px;letter-spacing:0.14em;color:var(--bronze)}
+  .svc-title{font-family:var(--fd);font-size:34px;line-height:1.1;letter-spacing:-0.01em;margin:0}
+  .svc-desc{font-size:18px;line-height:1.5;color:var(--mute)}
+
+  /* ── SLIDE 5: Methodology (dark) ── */
+  .methodology-list{margin-top:20px;border-top:1px solid var(--line-dark)}
+  .meth-row{
+    display:grid;grid-template-columns:80px 1fr 1.2fr 200px;
+    gap:50px;padding:42px 0;border-bottom:1px solid var(--line-dark);align-items:start;
+  }
+  .meth-num{font-family:var(--fm);font-size:16px;letter-spacing:0.14em;color:var(--bronze-2)}
+  .meth-title{font-family:var(--fd);font-size:50px;line-height:1.05;letter-spacing:-0.01em;margin:0}
+  .meth-desc{font-size:20px;line-height:1.5;color:rgba(244,239,230,.7)}
+  .meth-meta{font-family:var(--fm);font-size:14px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(244,239,230,.55);text-align:right}
+
+  /* ── SLIDE 6: Sectors ── */
+  .sectors-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+    margin-top:30px;
+  }
+  .sector{
+    padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:space-between;gap:22px;
+    min-height:180px;
+  }
+  .sector-name{font-family:var(--fd);font-size:30px;line-height:1.1;letter-spacing:-0.005em}
+  .sector-count{font-family:var(--fm);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute)}
+  .sector-count b{color:var(--bronze);font-weight:400}
+
+  /* ── SLIDE 7: Section divider (cream) ── */
+  .divider-content{display:flex;flex-direction:column;justify-content:center;height:100%;text-align:left}
+  .divider-content .label{font-family:var(--fm);font-size:24px;text-transform:uppercase;letter-spacing:0.2em;color:var(--bronze);margin-bottom:30px}
+  .divider-content h2{font-size:170px;line-height:0.95}
+  .divider-content .num{
+    position:absolute;top:60%;right:120px;transform:translateY(-50%);
+    font-family:var(--fd);font-style:italic;font-size:560px;line-height:1;
+    color:rgba(176,136,98,.16);
+  }
+
+  /* ── SLIDE 8: Contact / closing (dark) ── */
+  .closing-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:30px;align-items:end;flex:1}
+  .closing-channels{display:flex;flex-direction:column;gap:30px;padding-top:40px;border-top:1px solid var(--line-dark)}
+  .closing-channel{display:grid;grid-template-columns:160px 1fr;gap:30px;align-items:baseline}
+  .closing-channel .lbl{font-family:var(--fm);font-size:14px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(244,239,230,.55)}
+  .closing-channel .val{font-family:var(--fd);font-size:28px;color:var(--paper)}
+  .closing-channel .val i{font-style:italic;color:var(--bronze-2)}
+
+  @media print{ section{break-after:page} }
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- ───────── 01 — COVER ───────── -->
+  <section class="slide-cover" data-screen-label="01 Capa">
+    <div class="content">
+      <div class="slide-mark">
+        Tonello <span class="amp">&amp;</span> Siqueira
+        <span class="sub">Valuation · M&amp;A · Sucessão</span>
+      </div>
+      <div class="slide-meta">
+        <div>Boutique · São Paulo</div>
+        <div>2026</div>
+      </div>
+      <div class="mid">
+        <div class="eyebrow">Apresentação institucional · v 1.0</div>
+        <h1>Decisões<br />de M&amp;A começam<br /><i>aqui.</i></h1>
+      </div>
+      <div class="bottom">
+        <div><b>+120</b>laudos emitidos</div>
+        <div><b>R$ 2,3 bi</b>em valor mediado</div>
+        <div><b>14</b>setores atendidos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── 02 — AGENDA ───────── -->
+  <section data-screen-label="02 Agenda">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>Maio · 26</div></div>
+
+    <div class="agenda-grid">
+      <div>
+        <div class="eyebrow">Agenda</div>
+        <h2>O que vamos<br />ver <i>hoje.</i></h2>
+        <p class="lead" style="margin-top:30px">
+          Cinco capítulos curtos. Uma conversa franca sobre como
+          conduzimos cada mandato.
+        </p>
+      </div>
+      <div class="agenda-list">
+        <div class="agenda-row"><div class="agenda-num">01</div><div class="agenda-title">Sobre a <i>boutique</i></div></div>
+        <div class="agenda-row"><div class="agenda-num">02</div><div class="agenda-title">Serviços</div></div>
+        <div class="agenda-row"><div class="agenda-num">03</div><div class="agenda-title"><i>Metodologia</i></div></div>
+        <div class="agenda-row"><div class="agenda-num">04</div><div class="agenda-title">Setores atendidos</div></div>
+        <div class="agenda-row"><div class="agenda-num">05</div><div class="agenda-title">Próximos <i>passos</i></div></div>
+      </div>
+    </div>
+
+    <div class="slide-foot"><div>Agenda</div><div class="num">02</div></div>
+  </section>
+
+  <!-- ───────── 03 — SÓCIOS ───────── -->
+  <section class="cream" data-screen-label="03 Sócios">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>01 · Sobre</div></div>
+
+    <div class="eyebrow">Sócios</div>
+    <h2 style="max-width:1100px">Dois sócios, um <i>compromisso.</i></h2>
+
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-portrait">
+          <div class="stripe"></div>
+          <div class="initial">T</div>
+          <div class="ph-label">retrato · tonello</div>
+        </div>
+        <div class="partner-role">Sócio · Valuation</div>
+        <h3 class="partner-name">— Tonello</h3>
+        <p class="partner-bio">
+          Especialista em modelagem e laudos técnicos. Conduz pessoalmente
+          cada laudo emitido pela firma.
+        </p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-portrait">
+          <div class="stripe"></div>
+          <div class="initial">S</div>
+          <div class="ph-label">retrato · felipe siqueira</div>
+        </div>
+        <div class="partner-role">Sócio · M&amp;A</div>
+        <h3 class="partner-name">Felipe Siqueira</h3>
+        <p class="partner-bio">
+          Conduz transações do mapeamento de compradores até o closing.
+          Forte experiência em negociação e defesa de tese.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-foot"><div>Sócios</div><div class="num">03</div></div>
+  </section>
+
+  <!-- ───────── 04 — SERVIÇOS ───────── -->
+  <section data-screen-label="04 Serviços">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>02 · Serviços</div></div>
+
+    <div class="eyebrow">Serviços</div>
+    <h2 style="max-width:1300px">Seis frentes,<br />um único <i>princípio.</i></h2>
+
+    <div class="services-grid">
+      <div class="svc"><div class="svc-num">01</div><h3 class="svc-title">Laudo de avaliação</h3><p class="svc-desc">DCF, múltiplos e patrimonial para suportar venda, sucessão ou disputa.</p></div>
+      <div class="svc"><div class="svc-num">02</div><h3 class="svc-title">Assessoria em M&amp;A</h3><p class="svc-desc">Teaser, IM, mapeamento, NDA, due diligence e negociação até o closing.</p></div>
+      <div class="svc"><div class="svc-num">03</div><h3 class="svc-title">Captação &amp; investimento</h3><p class="svc-desc">Valuation para rodadas, modelagem, deck e negociação com fundos.</p></div>
+      <div class="svc"><div class="svc-num">04</div><h3 class="svc-title">Planejamento sucessório</h3><p class="svc-desc">Avaliação para divisão patrimonial, holdings familiares e governança.</p></div>
+      <div class="svc"><div class="svc-num">05</div><h3 class="svc-title">Reestruturação societária</h3><p class="svc-desc">Entrada e saída de sócios, fusão, cisão, reorganização de quotas.</p></div>
+      <div class="svc"><div class="svc-num">06</div><h3 class="svc-title">Diagnóstico de valor</h3><p class="svc-desc">Drivers, riscos e quick wins para subir o preço da empresa em 12–24 meses.</p></div>
+    </div>
+
+    <div class="slide-foot"><div>Serviços</div><div class="num">04</div></div>
+  </section>
+
+  <!-- ───────── 05 — METODOLOGIA ───────── -->
+  <section class="dark" data-screen-label="05 Metodologia">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>03 · Metodologia</div></div>
+
+    <div class="eyebrow">Metodologia</div>
+    <h2 style="max-width:1400px">Um processo de seis<br />semanas, a <i>quatro mãos.</i></h2>
+
+    <div class="methodology-list">
+      <div class="meth-row">
+        <div class="meth-num">01</div>
+        <h3 class="meth-title">Diagnóstico</h3>
+        <p class="meth-desc">Conversa com o dono, leitura dos demonstrativos e definição de escopo.</p>
+        <div class="meth-meta">Semana 1</div>
+      </div>
+      <div class="meth-row">
+        <div class="meth-num">02</div>
+        <h3 class="meth-title">Modelagem</h3>
+        <p class="meth-desc">Modelo financeiro com normalizações, projeção e análise de risco.</p>
+        <div class="meth-meta">Semanas 2–4</div>
+      </div>
+      <div class="meth-row">
+        <div class="meth-num">03</div>
+        <h3 class="meth-title">Avaliação</h3>
+        <p class="meth-desc">DCF, múltiplos e patrimonial. Triangulação e sensibilidade.</p>
+        <div class="meth-meta">Semanas 4–5</div>
+      </div>
+      <div class="meth-row">
+        <div class="meth-num">04</div>
+        <h3 class="meth-title">Entrega &amp; defesa</h3>
+        <p class="meth-desc">Laudo apresentado e defendido frente a contrapartes. Suporte até o closing.</p>
+        <div class="meth-meta">Semana 6</div>
+      </div>
+    </div>
+
+    <div class="slide-foot"><div>Metodologia</div><div class="num">05</div></div>
+  </section>
+
+  <!-- ───────── 06 — SETORES ───────── -->
+  <section class="cream" data-screen-label="06 Setores">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>04 · Setores</div></div>
+
+    <div class="eyebrow">Setores atendidos</div>
+    <h2 style="max-width:1200px">Onde temos<br /><i>cicatriz</i> de campo.</h2>
+
+    <div class="sectors-grid">
+      <div class="sector"><div class="sector-name">Serviços B2B</div><div class="sector-count"><b>22</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Indústria leve</div><div class="sector-count"><b>18</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Saúde</div><div class="sector-count"><b>14</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Tecnologia &amp; SaaS</div><div class="sector-count"><b>12</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Alimentos &amp; Bebidas</div><div class="sector-count"><b>11</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Varejo especializado</div><div class="sector-count"><b>10</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Logística</div><div class="sector-count"><b>9</b> projetos</div></div>
+      <div class="sector"><div class="sector-name">Educação</div><div class="sector-count"><b>7</b> projetos</div></div>
+    </div>
+
+    <div class="slide-foot"><div>Setores</div><div class="num">06</div></div>
+  </section>
+
+  <!-- ───────── 07 — DIVIDER ───────── -->
+  <section data-screen-label="07 Próximos Passos">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>Próximos passos</div></div>
+
+    <div class="divider-content">
+      <div class="label">— Capítulo 05</div>
+      <h2>Próximos<br /><i>passos.</i></h2>
+    </div>
+    <div class="num">05</div>
+
+    <div class="slide-foot"><div>Transição</div><div class="num">07</div></div>
+  </section>
+
+  <!-- ───────── 08 — FECHAMENTO ───────── -->
+  <section class="dark" data-screen-label="08 Contato">
+    <div class="slide-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+      <span class="sub">Apresentação institucional</span>
+    </div>
+    <div class="slide-meta"><div>Obrigado</div></div>
+
+    <div class="eyebrow">Próximos passos</div>
+    <div style="display:flex;flex-direction:column;justify-content:space-between;height:calc(100% - 200px)">
+
+      <h1 style="max-width:1500px">Agende um<br />diagnóstico<br /><i>gratuito.</i></h1>
+
+      <div class="closing-channels" style="max-width:980px">
+        <div class="closing-channel">
+          <div class="lbl">Whatsapp</div>
+          <div class="val">+55 (11) 9•••• ••••</div>
+        </div>
+        <div class="closing-channel">
+          <div class="lbl">E-mail</div>
+          <div class="val">contato@<i>tonelloesiqueira</i>.com.br</div>
+        </div>
+        <div class="closing-channel">
+          <div class="lbl">Site</div>
+          <div class="val"><i>tonelloesiqueira</i>.com.br</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot"><div>Obrigado · Tonello &amp; Siqueira</div><div class="num">08</div></div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+
+</body>
+</html>

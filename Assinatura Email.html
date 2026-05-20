@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Assinatura de E-mail — Tonello & Siqueira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1A2B;--cream:#F4EFE6;--paper:#FAF7F1;--bronze:#B08862;
+    --ink:#14202F;--mute:#5C6470;--line:rgba(20,32,47,.14);
+    --fd:"Instrument Serif",Georgia,serif;
+    --fb:"Geist",system-ui,sans-serif;
+    --fm:"Geist Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--fb);background:#E4DFD3;color:var(--ink);padding:40px 24px;min-height:100vh}
+  .wrap{max-width:920px;margin:0 auto}
+  header{margin-bottom:30px}
+  header .eyebrow{
+    font-family:var(--fm);font-size:11px;text-transform:uppercase;
+    letter-spacing:0.14em;color:var(--bronze);
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;
+  }
+  header .eyebrow::before{content:"";width:22px;height:1px;background:var(--bronze)}
+  header h1{
+    font-family:var(--fd);font-weight:400;font-size:44px;
+    line-height:1.0;letter-spacing:-0.01em;margin:0 0 14px;
+  }
+  header h1 i{font-style:italic;color:var(--bronze)}
+  header p{color:var(--mute);max-width:60ch;margin:0;font-size:15px;line-height:1.55}
+
+  .signatures{display:grid;gap:24px;margin-top:30px}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 12px 40px -20px rgba(0,0,0,.18);
+  }
+  .card-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 22px;
+    border-bottom:1px solid var(--line);
+    background:rgba(244,239,230,.5);
+  }
+  .card-title{
+    font-family:var(--fd);font-size:18px;line-height:1;
+  }
+  .card-title .small{
+    font-family:var(--fm);font-size:9px;text-transform:uppercase;
+    letter-spacing:0.14em;color:var(--mute);margin-left:10px;
+  }
+  .card-actions{display:flex;gap:8px}
+  .btn{
+    appearance:none;border:0;background:var(--navy);color:var(--paper);
+    font:inherit;font-size:12px;padding:8px 14px;border-radius:999px;
+    cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+    transition:background .15s;
+  }
+  .btn:hover{background:#16263D}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(20,32,47,.22)}
+  .btn.ghost:hover{background:rgba(20,32,47,.04)}
+  .preview{
+    padding:30px 30px 34px;
+    background:white;
+  }
+  .preview .email-frame{
+    max-width:520px;
+  }
+  .source{
+    padding:18px 22px;
+    background:#0E1A2B;
+    color:#C9C4B9;
+    font-family:var(--fm);
+    font-size:11px;
+    line-height:1.55;
+    max-height:0;
+    overflow:auto;
+    transition:max-height .3s ease;
+    border-top:1px solid var(--line);
+  }
+  .source.open{max-height:340px;padding:18px 22px}
+  .source pre{margin:0;white-space:pre-wrap;word-break:break-word}
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--navy);color:var(--paper);padding:12px 22px;border-radius:999px;
+    font-size:13px;opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;
+    z-index:100;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+  }
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ── EMAIL SIGNATURE styles (the actual reusable HTML lives in <template> below) ── */
+  /* Render-only styles mirror the inline ones used inside the templates */
+
+  .howto{
+    margin-top:40px;padding:28px;background:var(--paper);
+    border:1px solid var(--line);border-radius:6px;
+  }
+  .howto h2{font-family:var(--fd);font-size:24px;margin:0 0 14px;font-weight:400}
+  .howto h2 i{font-style:italic;color:var(--bronze)}
+  .howto h3{
+    font-family:var(--fm);font-size:11px;text-transform:uppercase;
+    letter-spacing:0.14em;color:var(--bronze);margin:18px 0 8px;
+  }
+  .howto p{margin:0 0 8px;color:var(--mute);font-size:14px;line-height:1.55}
+  .howto ol{margin:0 0 8px;padding-left:20px;color:var(--mute);font-size:14px;line-height:1.7}
+  .howto code{
+    font-family:var(--fm);font-size:12px;background:rgba(20,32,47,.06);
+    padding:1px 6px;border-radius:3px;color:var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Material · 03</div>
+    <h1>Assinatura<br />de <i>e-mail.</i></h1>
+    <p>
+      Três variações de assinatura no padrão Tonello &amp; Siqueira. Cada cartão
+      mostra a versão renderizada e o código-fonte pronto pra colar — o
+      Gmail, Outlook e Apple Mail aceitam todas elas direto, sem ajustes.
+    </p>
+  </header>
+
+  <div class="signatures">
+
+    <!-- ── SIGNATURE 1: COMPLETA ──────────────────── -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Completa <span class="small">com tagline e endereço</span></div>
+        <div class="card-actions">
+          <button class="btn ghost" onclick="toggleSource(this)">Ver código</button>
+          <button class="btn" onclick="copySig('sig1')">Copiar HTML</button>
+        </div>
+      </div>
+      <div class="preview">
+        <!-- 🔽 BEGIN sig1 -->
+        <table id="sig1" cellpadding="0" cellspacing="0" border="0" style="font-family:Geist,Arial,sans-serif;color:#14202F;font-size:14px;line-height:1.5;max-width:520px;">
+          <tr>
+            <td style="padding-bottom:14px;">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:26px;line-height:1;color:#0E1A2B;">Tonello <i style="font-style:italic;color:#B08862;">&amp;</i> Siqueira</div>
+              <div style="font-family:'Geist Mono',Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#5C6470;text-transform:uppercase;margin-top:4px;">Valuation · M&amp;A · Sucessão</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-top:1px solid #DDD5C6;padding-top:14px;">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;line-height:1.1;color:#0E1A2B;">
+                Alexandre <i style="font-style:italic;color:#B08862;">Tonello</i>
+              </div>
+              <div style="font-family:'Geist Mono',Consolas,monospace;font-size:10px;letter-spacing:0.14em;color:#5C6470;text-transform:uppercase;margin-top:3px;">Sócio · Valuation</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top:14px;font-size:13px;color:#5C6470;line-height:1.6;">
+              <a href="mailto:alexandre@tonelloesiqueira.com.br" style="color:#14202F;text-decoration:none;">alexandre@tonelloesiqueira.com.br</a><br>
+              <a href="tel:+5511900000000" style="color:#14202F;text-decoration:none;">+55 (11) 9•••• ••••</a><br>
+              <span>Av. Brigadeiro Faria Lima · São Paulo · SP</span><br>
+              <a href="https://tonelloesiqueira.com.br" style="color:#B08862;text-decoration:none;">tonelloesiqueira.com.br</a>
+            </td>
+          </tr>
+        </table>
+        <!-- 🔼 END sig1 -->
+      </div>
+      <div class="source"><pre></pre></div>
+    </div>
+
+    <!-- ── SIGNATURE 2: COMPACTA ──────────────────── -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Compacta <span class="small">só o essencial</span></div>
+        <div class="card-actions">
+          <button class="btn ghost" onclick="toggleSource(this)">Ver código</button>
+          <button class="btn" onclick="copySig('sig2')">Copiar HTML</button>
+        </div>
+      </div>
+      <div class="preview">
+        <!-- 🔽 BEGIN sig2 -->
+        <table id="sig2" cellpadding="0" cellspacing="0" border="0" style="font-family:Geist,Arial,sans-serif;color:#14202F;font-size:14px;line-height:1.5;max-width:520px;">
+          <tr>
+            <td>
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:22px;line-height:1.1;color:#0E1A2B;">
+                Felipe <i style="font-style:italic;color:#B08862;">Siqueira</i>
+              </div>
+              <div style="font-family:'Geist Mono',Consolas,monospace;font-size:10px;letter-spacing:0.14em;color:#5C6470;text-transform:uppercase;margin-top:4px;">Sócio · M&amp;A — Tonello &amp; Siqueira</div>
+              <div style="margin-top:10px;font-size:13px;color:#14202F;">
+                <a href="mailto:felipe@tonelloesiqueira.com.br" style="color:#14202F;text-decoration:none;">felipe@tonelloesiqueira.com.br</a>
+                <span style="color:#B08862;"> · </span>
+                <a href="tel:+5511900000000" style="color:#14202F;text-decoration:none;">+55 (11) 9•••• ••••</a>
+                <span style="color:#B08862;"> · </span>
+                <a href="https://tonelloesiqueira.com.br" style="color:#B08862;text-decoration:none;">tonelloesiqueira.com.br</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- 🔼 END sig2 -->
+      </div>
+      <div class="source"><pre></pre></div>
+    </div>
+
+    <!-- ── SIGNATURE 3: MARCA + CITAÇÃO ──────────────────── -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Institucional <span class="small">com citação</span></div>
+        <div class="card-actions">
+          <button class="btn ghost" onclick="toggleSource(this)">Ver código</button>
+          <button class="btn" onclick="copySig('sig3')">Copiar HTML</button>
+        </div>
+      </div>
+      <div class="preview">
+        <!-- 🔽 BEGIN sig3 -->
+        <table id="sig3" cellpadding="0" cellspacing="0" border="0" style="font-family:Geist,Arial,sans-serif;color:#14202F;font-size:14px;line-height:1.5;max-width:560px;">
+          <tr>
+            <td style="padding-right:24px;border-right:1px solid #DDD5C6;vertical-align:top;width:200px;">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:22px;line-height:1.1;color:#0E1A2B;">
+                Alexandre <i style="font-style:italic;color:#B08862;">Tonello</i>
+              </div>
+              <div style="font-family:'Geist Mono',Consolas,monospace;font-size:10px;letter-spacing:0.14em;color:#5C6470;text-transform:uppercase;margin-top:4px;">Sócio · Valuation</div>
+              <div style="margin-top:14px;font-size:12px;color:#5C6470;line-height:1.6;">
+                <a href="mailto:alexandre@tonelloesiqueira.com.br" style="color:#14202F;text-decoration:none;">alexandre@tonelloesiqueira.com.br</a><br>
+                <a href="tel:+5511900000000" style="color:#14202F;text-decoration:none;">+55 (11) 9•••• ••••</a><br>
+                <a href="https://tonelloesiqueira.com.br" style="color:#B08862;text-decoration:none;">tonelloesiqueira.com.br</a>
+              </div>
+            </td>
+            <td style="padding-left:24px;vertical-align:top;">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:18px;line-height:1.0;color:#0E1A2B;">Tonello <i style="font-style:italic;color:#B08862;">&amp;</i> Siqueira</div>
+              <div style="font-family:'Geist Mono',Consolas,monospace;font-size:9px;letter-spacing:0.2em;color:#5C6470;text-transform:uppercase;margin-top:3px;">Boutique de Valuation</div>
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:14px;line-height:1.35;color:#5C6470;margin-top:14px;max-width:240px;">
+                "Decisões de M&amp;A, sucessão e captação <span style="color:#B08862;">começam aqui.</span>"
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- 🔼 END sig3 -->
+      </div>
+      <div class="source"><pre></pre></div>
+    </div>
+
+  </div>
+
+  <div class="howto">
+    <h2>Como <i>instalar.</i></h2>
+
+    <h3>Gmail (web)</h3>
+    <ol>
+      <li>Clique em <b>Copiar HTML</b> ou selecione a assinatura renderizada e copie (<code>Ctrl+C</code>).</li>
+      <li>No Gmail: <b>Configurações</b> (engrenagem) → <b>Ver todas as configurações</b> → aba <b>Geral</b>.</li>
+      <li>Role até <b>Assinatura</b> → <b>Criar novo</b> → cole no editor (<code>Ctrl+V</code>).</li>
+      <li>Configure como padrão em "novos e-mails" e "respostas". Salvar.</li>
+    </ol>
+
+    <h3>Outlook (web e desktop)</h3>
+    <ol>
+      <li>Copie a assinatura renderizada (não o código).</li>
+      <li>Outlook web: <b>Configurações</b> → <b>Email</b> → <b>Compor e responder</b> → <b>Nova assinatura</b> → colar.</li>
+      <li>Outlook desktop: <b>Arquivo</b> → <b>Opções</b> → <b>Email</b> → <b>Assinaturas</b>.</li>
+    </ol>
+
+    <h3>Apple Mail</h3>
+    <ol>
+      <li>Preferências → <b>Assinaturas</b> → <b>+</b> e cole.</li>
+      <li>Desmarque <b>"Sempre corresponder à fonte da mensagem padrão"</b> pra preservar a tipografia.</li>
+    </ol>
+
+    <h3>Quando a fonte aparecer diferente</h3>
+    <p>
+      Instrument Serif e Geist são fontes web — em alguns clientes de e-mail
+      mais antigos podem cair para Georgia + Arial, que é o fallback no código.
+      O leitor verá uma versão um pouco menos refinada, mas as cores e a
+      estrutura visual continuam intactas.
+    </p>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Copiado.</div>
+
+<script>
+  function copySig(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    try {
+      document.execCommand('copy');
+      showToast('Assinatura copiada — cole no seu cliente de e-mail.');
+    } catch (e) {
+      showToast('Selecione e copie manualmente.');
+    }
+    window.getSelection().removeAllRanges();
+  }
+  function toggleSource(btn) {
+    const card = btn.closest('.card');
+    const src = card.querySelector('.source');
+    const pre = src.querySelector('pre');
+    if (!src.classList.contains('open')) {
+      const sigId = card.querySelector('table[id^=sig]').id;
+      pre.textContent = document.getElementById(sigId).outerHTML;
+      src.classList.add('open');
+      btn.textContent = 'Ocultar código';
+    } else {
+      src.classList.remove('open');
+      btn.textContent = 'Ver código';
+    }
+  }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(window.__toast);
+    window.__toast = setTimeout(() => t.classList.remove('on'), 2400);
+  }
+</script>
+
+</body>
+</html>

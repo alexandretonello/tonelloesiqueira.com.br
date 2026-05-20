@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tonello & Siqueira — Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0E1A2B;
+    --cream: #F4EFE6;
+    --paper: #FAF7F1;
+    --bronze: #B08862;
+    --bronze-2: #C9A07A;
+    --ink: #14202F;
+    --mute: #5C6470;
+    --line: rgba(20,32,47,.14);
+    --line-strong: rgba(20,32,47,.28);
+    --font-d: "Instrument Serif", Georgia, serif;
+    --font-b: "Geist", system-ui, sans-serif;
+    --font-m: "Geist Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #E4DFD3; }
+  body {
+    font-family: var(--font-b);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    padding: 30px 0;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 30px;
+    background: var(--paper);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.25);
+    padding: 18mm 18mm 14mm;
+    position: relative;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  /* page header & footer */
+  .pg-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 24px;
+  }
+  .pg-wm {
+    font-family: var(--font-d);
+    font-size: 14pt;
+  }
+  .pg-wm .amp { font-style: italic; color: var(--bronze); }
+  .pg-tag {
+    font-family: var(--font-m);
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--mute);
+  }
+  .pg-foot {
+    position: absolute;
+    bottom: 14mm; left: 18mm; right: 18mm;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    display: flex; justify-content: space-between;
+    font-family: var(--font-m);
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--mute);
+  }
+  .pg-num {
+    font-family: var(--font-d);
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--bronze);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* covers and titles */
+  .eyebrow {
+    font-family: var(--font-m);
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--bronze);
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 1px;
+    background: var(--bronze);
+  }
+  h1.cover {
+    font-family: var(--font-d);
+    font-weight: 400;
+    font-size: 60pt;
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+  }
+  h1.cover i { font-style: italic; color: var(--bronze); }
+  h2.section {
+    font-family: var(--font-d);
+    font-weight: 400;
+    font-size: 28pt;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  h2.section i { font-style: italic; color: var(--bronze); }
+  h3 {
+    font-family: var(--font-d);
+    font-weight: 400;
+    font-size: 16pt;
+    margin: 0 0 8px;
+  }
+  h4 {
+    font-family: var(--font-m);
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--mute);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--mute);
+    max-width: 60ch;
+    font-family: var(--font-b);
+  }
+  p { margin: 0 0 10px; }
+  .mono { font-family: var(--font-m); font-size: 9pt; letter-spacing: 0.02em; }
+
+  /* COVER */
+  .cover-page {
+    background: var(--paper);
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-page .cover-top {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+  }
+  .cover-mark {
+    font-family: var(--font-d);
+    font-size: 34pt;
+    margin-bottom: 30px;
+  }
+  .cover-mark .amp { font-style: italic; color: var(--bronze); }
+  .cover-sub {
+    font-family: var(--font-m);
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    margin-top: -22px;
+    margin-bottom: 40px;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-m);
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--mute);
+  }
+  .cover-meta b {
+    display: block;
+    font-family: var(--font-d);
+    font-style: italic;
+    font-size: 16pt;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  /* COLOR SWATCHES */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .swatch {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    background: white;
+  }
+  .swatch-color {
+    height: 90px;
+    position: relative;
+  }
+  .swatch-color .pct {
+    position: absolute;
+    top: 8px; right: 10px;
+    font-family: var(--font-d);
+    font-style: italic;
+    font-size: 16pt;
+    color: rgba(255,255,255,.7);
+  }
+  .swatch.light .swatch-color .pct { color: rgba(20,32,47,.45); }
+  .swatch-info {
+    padding: 10px 12px 12px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .swatch-name {
+    font-family: var(--font-d);
+    font-size: 13pt;
+    line-height: 1.1;
+  }
+  .swatch-role {
+    font-family: var(--font-m);
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mute);
+    margin-bottom: 4px;
+  }
+  .swatch-codes {
+    font-family: var(--font-m);
+    font-size: 8pt;
+    color: var(--ink);
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 3px 8px;
+    margin-top: 6px;
+  }
+  .swatch-codes b { font-weight: 500; color: var(--mute); }
+
+  /* RATIOS */
+  .ratio-block {
+    display: flex;
+    height: 60px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 16px 0 8px;
+    border: 1px solid var(--line);
+  }
+  .ratio-block > div {
+    display: flex; align-items: flex-end; padding: 6px 10px;
+    font-family: var(--font-m);
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .ratio-cap {
+    font-family: var(--font-m);
+    font-size: 8pt;
+    color: var(--mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* TYPE */
+  .type-spec {
+    border-top: 1px solid var(--line);
+    padding: 22px 0;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+  .type-spec:last-child { border-bottom: 1px solid var(--line); }
+  .type-meta {
+    font-family: var(--font-m);
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: var(--mute);
+  }
+  .type-meta b {
+    display: block;
+    font-family: var(--font-d);
+    font-size: 18pt;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .type-spec-name { color: var(--bronze); text-transform: uppercase; letter-spacing: 0.12em; }
+  .type-sample-display {
+    font-family: var(--font-d);
+    font-size: 52pt;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .type-sample-display i { font-style: italic; color: var(--bronze); }
+  .type-sample-body {
+    font-family: var(--font-b);
+    font-size: 14pt;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .type-sample-mono {
+    font-family: var(--font-m);
+    font-size: 13pt;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .type-glyphs {
+    margin-top: 14px;
+    font-size: 10pt;
+    color: var(--mute);
+    letter-spacing: 0.02em;
+  }
+  .type-glyphs span {
+    display: inline-block;
+    padding: 0 4px;
+  }
+
+  .scale-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 9.5pt;
+  }
+  .scale-table th, .scale-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .scale-table th {
+    font-family: var(--font-m);
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mute);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .scale-table td.sample {
+    font-family: var(--font-d);
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .scale-table td.role {
+    font-family: var(--font-m);
+    font-size: 8.5pt;
+    color: var(--mute);
+  }
+  .scale-table .mono-tag { font-family: var(--font-m); font-size: 9pt; color: var(--ink); }
+
+  /* WORDMARK */
+  .mark-stage {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 60px 40px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .mark-stage.dark { background: var(--navy); }
+  .mark-stage.cream { background: var(--cream); }
+  .mark-wordmark {
+    font-family: var(--font-d);
+    font-size: 38pt;
+    line-height: 1;
+  }
+  .mark-wordmark .amp { font-style: italic; color: var(--bronze); }
+  .mark-stage.dark .mark-wordmark { color: var(--paper); }
+  .mark-tagline {
+    font-family: var(--font-m);
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    margin-top: 8px;
+  }
+  .mark-stage.dark .mark-tagline { color: rgba(244,239,230,.55); }
+  .mark-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .mark-mini-stage {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 28px 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 110px;
+  }
+  .mark-mini-stage.dark { background: var(--navy); }
+  .mark-mini-stage.cream { background: var(--cream); }
+  .mark-mini-stage .mark-wordmark { font-size: 18pt; }
+  .mark-mini-stage.dark .mark-wordmark { color: var(--paper); }
+  .mark-mini-stage .mark-tagline { font-size: 6.5pt; margin-top: 5px; }
+
+  .clear-space {
+    display: flex;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--line);
+    padding: 50px 30px;
+    position: relative;
+    margin: 14px 0 8px;
+  }
+  .clear-box {
+    position: relative;
+    padding: 30px 40px;
+    border: 1px dashed var(--bronze);
+  }
+  .clear-box::before, .clear-box::after,
+  .clear-box .h1, .clear-box .h2 {
+    position: absolute;
+    color: var(--bronze);
+    font-family: var(--font-d);
+    font-style: italic;
+    font-size: 14pt;
+    line-height: 1;
+  }
+  .clear-box::before { content: "x"; top: -8px; left: -20px; }
+  .clear-box::after  { content: "x"; bottom: -8px; right: -20px; }
+  .clear-box .h1 { top: -8px; right: -20px; content: "x"; }
+  .clear-box .h2 { bottom: -8px; left: -20px; content: "x"; }
+
+  /* USAGE GRID */
+  .usage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 12px 0;
+  }
+  .usage-card {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: white;
+    overflow: hidden;
+  }
+  .usage-card .preview {
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .usage-card .desc {
+    padding: 10px 14px;
+    font-size: 9pt;
+    color: var(--mute);
+    border-top: 1px solid var(--line);
+    display: flex; gap: 6px; align-items: baseline;
+  }
+  .usage-card .desc .badge {
+    font-family: var(--font-m);
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  .badge.ok { background: rgba(31,138,91,.12); color: #1F8A5B; }
+  .badge.no { background: rgba(199,52,52,.12); color: #C73434; }
+
+  /* TOC */
+  .toc {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 30px;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 32px 1fr 60px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .toc-row:first-child { border-top: 1px solid var(--line); }
+  .toc-num {
+    font-family: var(--font-m);
+    font-size: 9pt;
+    color: var(--bronze);
+    letter-spacing: 0.1em;
+  }
+  .toc-title {
+    font-family: var(--font-d);
+    font-size: 17pt;
+    color: var(--ink);
+  }
+  .toc-title i { font-style: italic; color: var(--bronze); }
+  .toc-page {
+    font-family: var(--font-m);
+    font-size: 9pt;
+    color: var(--mute);
+    text-align: right;
+    letter-spacing: 0.1em;
+  }
+
+  /* PRINT */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    html, body { background: white; }
+    body { padding: 0; }
+    .page {
+      width: 210mm; height: 297mm;
+      margin: 0; padding: 18mm 18mm 14mm;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .print-hide { display: none !important; }
+  }
+
+  /* PRINT FAB */
+  .print-fab {
+    position: fixed; bottom: 24px; right: 24px;
+    padding: 14px 22px;
+    background: var(--navy); color: var(--paper);
+    border: 0; border-radius: 999px;
+    font-family: var(--font-b); font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px -8px rgba(0,0,0,.4);
+    z-index: 100;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .print-fab:hover { background: #16263D; }
+</style>
+</head>
+<body>
+
+<!-- ─── PAGE 1: COVER ─────────────────────────────────────── -->
+<section class="page cover-page" data-screen-label="01 Capa">
+  <div class="cover-top">
+    <div class="eyebrow">Identidade visual · 2026</div>
+    <h1 class="cover">Manual<br />de <i>marca.</i></h1>
+    <p class="lead" style="margin-top: 16px; max-width: 50ch;">
+      Padrões visuais que sustentam a presença da Tonello &amp;
+      Siqueira em propostas, apresentações, contratos e canais
+      digitais — para que cada documento pareça parte do mesmo
+      escritório.
+    </p>
+  </div>
+  <div>
+    <div class="cover-mark">
+      Tonello <span class="amp">&amp;</span> Siqueira
+    </div>
+    <div class="cover-sub">Valuation · M&amp;A · Sucessão</div>
+    <div class="cover-meta">
+      <div><b>v 1.0</b>Edição inicial</div>
+      <div><b>Maio · 26</b>Última revisão</div>
+      <div><b>Interno</b>Uso restrito</div>
+    </div>
+  </div>
+  <div class="pg-foot">
+    <div>Tonello &amp; Siqueira — Manual de marca</div>
+    <div class="pg-num">01</div>
+  </div>
+</section>
+
+<!-- ─── PAGE 2: TOC + PRINCÍPIOS ─────────────────────────── -->
+<section class="page" data-screen-label="02 Princípios">
+  <div class="pg-head">
+    <div class="pg-wm">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="pg-tag">Princípios · Sumário</div>
+  </div>
+
+  <div class="eyebrow">Princípios</div>
+  <h2 class="section">Quatro regras<br />que <i>sustentam</i> tudo.</h2>
+
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 30px; margin: 28px 0;">
+    <div>
+      <h4>01 · Sobriedade</h4>
+      <p style="color: var(--mute); font-size: 10pt;">
+        Espaços em branco, hierarquia clara, nenhuma decoração gratuita.
+        Em valuation, contenção visual transmite confiança.
+      </p>
+    </div>
+    <div>
+      <h4>02 · Itálico bronze é a voz</h4>
+      <p style="color: var(--mute); font-size: 10pt;">
+        O serifado itálico em bronze é o destaque da marca. Use em
+        uma palavra-chave por título — nunca em frases inteiras.
+      </p>
+    </div>
+    <div>
+      <h4>03 · Linhas, não caixas</h4>
+      <p style="color: var(--mute); font-size: 10pt;">
+        Separadores 1pt em vez de quadros pesados. Bordas pesadas
+        congestionam a página e tiram a atenção do conteúdo.
+      </p>
+    </div>
+    <div>
+      <h4>04 · Maiúsculas apenas em rótulos</h4>
+      <p style="color: var(--mute); font-size: 10pt;">
+        Caps em "eyebrows" e legendas pequenas, com letter-spacing.
+        Nunca em títulos — serifa em caps grita; itálico sussurra.
+      </p>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-top: 30px;">Sumário</div>
+  <div class="toc">
+    <div class="toc-row"><div class="toc-num">01</div><div class="toc-title">Capa</div><div class="toc-page">p. 01</div></div>
+    <div class="toc-row"><div class="toc-num">02</div><div class="toc-title"><i>Princípios</i> &amp; sumário</div><div class="toc-page">p. 02</div></div>
+    <div class="toc-row"><div class="toc-num">03</div><div class="toc-title">Logotipo &amp; <i>marca</i></div><div class="toc-page">p. 03</div></div>
+    <div class="toc-row"><div class="toc-num">04</div><div class="toc-title">Paleta de <i>cores</i></div><div class="toc-page">p. 04</div></div>
+    <div class="toc-row"><div class="toc-num">05</div><div class="toc-title"><i>Tipografia</i> &amp; escala</div><div class="toc-page">p. 05</div></div>
+    <div class="toc-row"><div class="toc-num">06</div><div class="toc-title">Aplicações &amp; <i>usos</i></div><div class="toc-page">p. 06</div></div>
+  </div>
+
+  <div class="pg-foot">
+    <div>Princípios &amp; sumário</div>
+    <div class="pg-num">02</div>
+  </div>
+</section>
+
+<!-- ─── PAGE 3: LOGOTIPO ─────────────────────────────────── -->
+<section class="page" data-screen-label="03 Logotipo">
+  <div class="pg-head">
+    <div class="pg-wm">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="pg-tag">03 · Logotipo</div>
+  </div>
+
+  <div class="eyebrow">Logotipo</div>
+  <h2 class="section">Um wordmark,<br /><i>três</i> aplicações.</h2>
+  <p class="lead" style="margin-bottom: 24px;">
+    O logo é tipográfico. O "&amp;" em itálico bronze é o elemento de marca
+    que carrega a voz visual — preservar essa relação é o que mantém a
+    identidade reconhecível em qualquer contexto.
+  </p>
+
+  <div class="mark-stage">
+    <div class="mark-wordmark">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="mark-tagline">Valuation · M&amp;A · Sucessão</div>
+  </div>
+
+  <div class="mark-row">
+    <div class="mark-mini-stage">
+      <div class="mark-wordmark">Tonello <span class="amp">&amp;</span> Siqueira</div>
+      <div class="mark-tagline">Sobre paleta clara</div>
+    </div>
+    <div class="mark-mini-stage cream">
+      <div class="mark-wordmark">Tonello <span class="amp">&amp;</span> Siqueira</div>
+      <div class="mark-tagline">Sobre creme</div>
+    </div>
+    <div class="mark-mini-stage dark">
+      <div class="mark-wordmark">Tonello <span class="amp">&amp;</span> Siqueira</div>
+      <div class="mark-tagline">Sobre paleta escura</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 26px;">
+    <div>
+      <h4>Especificação</h4>
+      <table style="width: 100%; font-size: 9pt; border-collapse: collapse;">
+        <tr><td style="padding: 6px 0; color: var(--mute); width: 45%;">Fonte do nome</td><td>Instrument Serif Regular</td></tr>
+        <tr><td style="padding: 6px 0; color: var(--mute);">Fonte do "&amp;"</td><td>Instrument Serif <i style="font-style: italic; color: var(--bronze);">Italic</i></td></tr>
+        <tr><td style="padding: 6px 0; color: var(--mute);">Cor padrão</td><td><span class="mono">#0E1A2B</span></td></tr>
+        <tr><td style="padding: 6px 0; color: var(--mute);">Cor do "&amp;"</td><td><span class="mono">#B08862</span></td></tr>
+        <tr><td style="padding: 6px 0; color: var(--mute);">Tagline</td><td>Geist Mono · 9pt · letter-spacing 0.20em</td></tr>
+        <tr><td style="padding: 6px 0; color: var(--mute);">Tamanho mínimo</td><td>14pt (impresso) · 18px (digital)</td></tr>
+      </table>
+    </div>
+    <div>
+      <h4>Área de proteção</h4>
+      <p style="font-size: 9.5pt; color: var(--mute); margin-bottom: 8px;">
+        A margem livre ao redor do logo equivale à altura da letra "T".
+        Nada deve invadir essa área — outros logos, texto ou imagem.
+      </p>
+      <div class="clear-space">
+        <div class="clear-box">
+          <div class="mark-wordmark" style="font-size: 18pt;">Tonello <span class="amp">&amp;</span> Siqueira</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-foot">
+    <div>Logotipo</div>
+    <div class="pg-num">03</div>
+  </div>
+</section>
+
+<!-- ─── PAGE 4: PALETA ────────────────────────────────────── -->
+<section class="page" data-screen-label="04 Paleta">
+  <div class="pg-head">
+    <div class="pg-wm">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="pg-tag">04 · Paleta de cores</div>
+  </div>
+
+  <div class="eyebrow">Cores</div>
+  <h2 class="section">Sete cores,<br />três <i>papéis.</i></h2>
+  <p class="lead" style="margin-bottom: 28px;">
+    Navy é estrutura. Bronze é voz. Creme é respiração. Nada
+    foi escolhido por acaso — os tons compõem uma página que se
+    lê em qualquer luz, do escritório ao PDF impresso.
+  </p>
+
+  <h4 style="margin-bottom: 14px;">Primárias</h4>
+  <div class="palette-grid">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background: #0E1A2B;"><div class="pct">01</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Estrutura</div>
+        <div class="swatch-name">Navy</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#0E1A2B</span>
+          <b>RGB</b><span class="mono">14 · 26 · 43</span>
+          <b>CMYK</b><span class="mono">92 80 50 70</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background: #B08862;"><div class="pct">02</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Voz · destaque</div>
+        <div class="swatch-name">Bronze</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#B08862</span>
+          <b>RGB</b><span class="mono">176 · 136 · 98</span>
+          <b>CMYK</b><span class="mono">26 42 60 8</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatch light">
+      <div class="swatch-color" style="background: #FAF7F1;"><div class="pct">03</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Respiro</div>
+        <div class="swatch-name">Paper</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#FAF7F1</span>
+          <b>RGB</b><span class="mono">250 · 247 · 241</span>
+          <b>CMYK</b><span class="mono">2 3 6 0</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h4 style="margin: 22px 0 14px;">Secundárias</h4>
+  <div class="palette-grid">
+
+    <div class="swatch light">
+      <div class="swatch-color" style="background: #F4EFE6;"><div class="pct">04</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Fundo alternado</div>
+        <div class="swatch-name">Creme</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#F4EFE6</span>
+          <b>RGB</b><span class="mono">244 · 239 · 230</span>
+          <b>CMYK</b><span class="mono">4 5 10 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background: #C9A07A;"><div class="pct">05</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Bronze claro</div>
+        <div class="swatch-name">Bronze ·02</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#C9A07A</span>
+          <b>RGB</b><span class="mono">201 · 160 · 122</span>
+          <b>CMYK</b><span class="mono">20 35 55 4</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background: #14202F;"><div class="pct">06</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Tinta — corpo</div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#14202F</span>
+          <b>RGB</b><span class="mono">20 · 32 · 47</span>
+          <b>CMYK</b><span class="mono">88 75 50 65</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h4 style="margin: 22px 0 14px;">Neutra</h4>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background: #5C6470;"><div class="pct">07</div></div>
+      <div class="swatch-info">
+        <div class="swatch-role">Texto auxiliar</div>
+        <div class="swatch-name">Mute</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span class="mono">#5C6470</span>
+          <b>RGB</b><span class="mono">92 · 100 · 112</span>
+          <b>CMYK</b><span class="mono">68 55 42 25</span>
+        </div>
+      </div>
+    </div>
+    <div style="grid-column: span 2;">
+      <h4 style="margin-top: 0;">Proporção sugerida</h4>
+      <div class="ratio-block">
+        <div style="background: #FAF7F1; color: var(--mute); width: 60%;">60 · Paper</div>
+        <div style="background: #F4EFE6; color: var(--mute); width: 18%;">18 · Creme</div>
+        <div style="background: #0E1A2B; color: var(--paper); width: 16%;">16 · Navy</div>
+        <div style="background: #B08862; color: white; width: 6%;">6</div>
+      </div>
+      <div class="ratio-cap">
+        60% respiro · 18% alternância · 16% estrutura · 6% destaque
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-foot">
+    <div>Paleta de cores</div>
+    <div class="pg-num">04</div>
+  </div>
+</section>
+
+<!-- ─── PAGE 5: TIPOGRAFIA ───────────────────────────────── -->
+<section class="page" data-screen-label="05 Tipografia">
+  <div class="pg-head">
+    <div class="pg-wm">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="pg-tag">05 · Tipografia</div>
+  </div>
+
+  <div class="eyebrow">Tipografia</div>
+  <h2 class="section">Três fontes,<br />uma <i>conversa.</i></h2>
+  <p class="lead" style="margin-bottom: 20px;">
+    Instrument Serif fala, Geist informa, Geist Mono organiza. Use sempre nessa
+    ordem de hierarquia. Quando uma das fontes não estiver disponível, use a
+    alternativa listada — nunca substitua por uma "parecida".
+  </p>
+
+  <div class="type-spec">
+    <div class="type-meta">
+      <div class="type-spec-name">Display</div>
+      <b>Instrument Serif</b>
+      Regular · Italic<br />
+      Google Fonts (grátis)<br />
+      <br />
+      <span style="color: var(--ink); font-family: var(--font-d); font-style: italic; font-size: 11pt;">Alternativas:</span><br />
+      Cormorant Garamond<br />
+      EB Garamond<br />
+      Georgia (sistema)
+    </div>
+    <div>
+      <div class="type-sample-display">
+        Quanto vale<br /><i>de verdade.</i>
+      </div>
+      <div class="type-glyphs">
+        Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br />
+        <i style="color: var(--bronze);">Aa Bb Cc Dd Ee Ff Gg</i> · 0 1 2 3 4 5 6 7 8 9 · &amp; ? ! @
+      </div>
+    </div>
+  </div>
+
+  <div class="type-spec">
+    <div class="type-meta">
+      <div class="type-spec-name">Corpo</div>
+      <b>Geist</b>
+      300 · 400 · 500 · 600<br />
+      Vercel Fonts (grátis)<br />
+      <br />
+      <span style="color: var(--ink); font-family: var(--font-d); font-style: italic; font-size: 11pt;">Alternativas:</span><br />
+      Inter<br />
+      Manrope<br />
+      Calibri / Aptos (Office)
+    </div>
+    <div>
+      <div class="type-sample-body">
+        Tonello &amp; Siqueira é uma boutique brasileira de valuation
+        para pequenas e médias empresas. Emitimos laudos técnicos,
+        assessoramos em M&amp;A e estruturamos a tese de valor que
+        sustenta a próxima etapa do seu negócio.
+      </div>
+    </div>
+  </div>
+
+  <div class="type-spec">
+    <div class="type-meta">
+      <div class="type-spec-name">Rótulos</div>
+      <b>Geist Mono</b>
+      400 · 500<br />
+      Vercel Fonts (grátis)<br />
+      <br />
+      <span style="color: var(--ink); font-family: var(--font-d); font-style: italic; font-size: 11pt;">Alternativas:</span><br />
+      JetBrains Mono<br />
+      IBM Plex Mono<br />
+      Consolas (sistema)
+    </div>
+    <div>
+      <div class="type-sample-mono" style="color: var(--bronze); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11pt; margin-bottom: 10px;">
+        Serviços · Metodologia · Sócios
+      </div>
+      <div class="type-sample-mono" style="color: var(--ink);">
+        R$ 2.345.000,00 &nbsp;·&nbsp; EBITDA 18% &nbsp;·&nbsp; 6.5×
+      </div>
+    </div>
+  </div>
+
+  <h4 style="margin-top: 26px;">Escala tipográfica</h4>
+  <table class="scale-table">
+    <thead>
+      <tr>
+        <th style="width: 18%;">Nível</th>
+        <th style="width: 12%;">Tamanho</th>
+        <th style="width: 22%;">Fonte</th>
+        <th>Amostra</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="role">Headline</td>
+        <td class="mono-tag">48–60pt</td>
+        <td class="role">Instrument Serif</td>
+        <td class="sample" style="font-size: 22pt;">Quanto <i style="color: var(--bronze); font-style: italic;">vale.</i></td>
+      </tr>
+      <tr>
+        <td class="role">Título seção</td>
+        <td class="mono-tag">28–32pt</td>
+        <td class="role">Instrument Serif</td>
+        <td class="sample" style="font-size: 16pt;">Metodologia</td>
+      </tr>
+      <tr>
+        <td class="role">Subtítulo</td>
+        <td class="mono-tag">14–18pt</td>
+        <td class="role">Instrument Serif Italic</td>
+        <td class="sample" style="font-size: 13pt; font-style: italic; color: var(--bronze);">decisão informada</td>
+      </tr>
+      <tr>
+        <td class="role">Corpo</td>
+        <td class="mono-tag">10–11pt</td>
+        <td class="role">Geist Regular</td>
+        <td class="sample" style="font-family: var(--font-b); font-size: 10pt;">Conduzimos cada projeto pessoalmente.</td>
+      </tr>
+      <tr>
+        <td class="role">Eyebrow</td>
+        <td class="mono-tag">8–9pt</td>
+        <td class="role">Geist Mono</td>
+        <td class="sample" style="font-family: var(--font-m); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.14em; color: var(--bronze);">— Serviços</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pg-foot">
+    <div>Tipografia &amp; escala</div>
+    <div class="pg-num">05</div>
+  </div>
+</section>
+
+<!-- ─── PAGE 6: APLICAÇÕES ───────────────────────────────── -->
+<section class="page" data-screen-label="06 Aplicações">
+  <div class="pg-head">
+    <div class="pg-wm">Tonello <span class="amp">&amp;</span> Siqueira</div>
+    <div class="pg-tag">06 · Aplicações</div>
+  </div>
+
+  <div class="eyebrow">Aplicações</div>
+  <h2 class="section">O que <i>fazer</i><br />e o que <i>evitar.</i></h2>
+  <p class="lead" style="margin-bottom: 26px;">
+    Princípios são abstratos — exemplos resolvem. Quando em dúvida em uma nova
+    aplicação, escolha a que segue a lógica abaixo.
+  </p>
+
+  <div class="usage-grid">
+
+    <div class="usage-card">
+      <div class="preview" style="background: var(--paper);">
+        <div style="font-family: var(--font-d); font-size: 22pt;">
+          Tonello <span style="font-style: italic; color: var(--bronze);">&amp;</span> Siqueira
+        </div>
+      </div>
+      <div class="desc">
+        <span class="badge ok">Faça</span>
+        <span>Logo sobre fundo claro com "&amp;" em bronze.</span>
+      </div>
+    </div>
+
+    <div class="usage-card">
+      <div class="preview" style="background: var(--navy);">
+        <div style="font-family: var(--font-d); font-size: 22pt; color: var(--paper);">
+          Tonello <span style="font-style: italic; color: var(--bronze-2);">&amp;</span> Siqueira
+        </div>
+      </div>
+      <div class="desc">
+        <span class="badge ok">Faça</span>
+        <span>Sobre navy, use creme + bronze claro (<span class="mono">#C9A07A</span>).</span>
+      </div>
+    </div>
+
+    <div class="usage-card">
+      <div class="preview" style="background: var(--paper);">
+        <div style="font-family: 'Times New Roman', serif; font-size: 22pt; color: red;">
+          Tonello &amp; Siqueira
+        </div>
+      </div>
+      <div class="desc">
+        <span class="badge no">Evite</span>
+        <span>Não troque a tipografia nem use cores fora da paleta.</span>
+      </div>
+    </div>
+
+    <div class="usage-card">
+      <div class="preview" style="background: linear-gradient(135deg, #B08862, #0E1A2B);">
+        <div style="font-family: var(--font-d); font-size: 22pt; color: white;">
+          Tonello <span style="font-style: italic;">&amp;</span> Siqueira
+        </div>
+      </div>
+      <div class="desc">
+        <span class="badge no">Evite</span>
+        <span>Sem gradientes — a marca pede planos sólidos.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h4 style="margin-top: 24px;">Aplicações práticas</h4>
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; font-size: 9.5pt;">
+    <div style="border-left: 1px solid var(--bronze); padding-left: 14px;">
+      <h3 style="font-size: 13pt;">Propostas</h3>
+      <p style="color: var(--mute); margin-bottom: 4px;">
+        Capa creme, logo no canto superior esquerdo, número do projeto
+        em Geist Mono no canto superior direito. Sumário sempre na p. 02.
+      </p>
+    </div>
+    <div style="border-left: 1px solid var(--bronze); padding-left: 14px;">
+      <h3 style="font-size: 13pt;">Slides</h3>
+      <p style="color: var(--mute); margin-bottom: 4px;">
+        Fundo creme padrão. Use navy apenas em seções de transição.
+        Um título grande, no máximo 6 linhas de texto por slide.
+      </p>
+    </div>
+    <div style="border-left: 1px solid var(--bronze); padding-left: 14px;">
+      <h3 style="font-size: 13pt;">Assinatura de e-mail</h3>
+      <p style="color: var(--mute); margin-bottom: 4px;">
+        Wordmark + nome do remetente em itálico bronze + cargo
+        e contatos em Geist 9pt. Sem ícones de redes sociais.
+      </p>
+    </div>
+    <div style="border-left: 1px solid var(--bronze); padding-left: 14px;">
+      <h3 style="font-size: 13pt;">Documentos jurídicos</h3>
+      <p style="color: var(--mute); margin-bottom: 4px;">
+        Margem 25mm, corpo em Geist 11pt, justificado. Cabeçalho
+        com wordmark à esquerda e número de página em itálico bronze.
+      </p>
+    </div>
+  </div>
+
+  <div class="pg-foot">
+    <div>Aplicações &amp; usos</div>
+    <div class="pg-num">06</div>
+  </div>
+</section>
+
+<button class="print-fab print-hide" onclick="window.print()">
+  ⬇ Salvar como PDF
+</button>
+
+</body>
+</html>
