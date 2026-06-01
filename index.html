@@ -640,6 +640,12 @@
       form.innerHTML = '<div class="form-success"><div class="check">\u2713</div><h3>Recebido. Obrigado.</h3><p>Um dos s\u00f3cios responde pessoalmente para agendar a conversa.</p></div>';
     }
 
+    function showError() {
+      var addr = to;
+      form.innerHTML = '<div class="form-success"><div class="check">!</div><h3>N\u00e3o foi poss\u00edvel enviar agora.</h3>' +
+        '<p>Tente novamente em instantes ou escreva direto para <a href="mailto:' + addr + '" style="color:var(--green);">' + addr + '</a>.</p></div>';
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
@@ -663,23 +669,11 @@
         body: JSON.stringify(payload)
       })
         .then(function (r) { return r.json(); })
-        .then(function () { showSuccess(); })
-        .catch(function () {
-          // Fallback: abre o programa de e-mail do visitante j\u00e1 preenchido.
-          var linhas = [
-            'Nome: ' + payload.Nome,
-            'Empresa: ' + payload.Empresa,
-            'E-mail: ' + payload['E-mail'],
-            'Telefone: ' + payload.Telefone,
-            'Objetivo: ' + payload.Objetivo,
-            '',
-            payload.Mensagem
-          ].join('\n');
-          window.location.href = 'mailto:' + to +
-            '?subject=' + encodeURIComponent(payload._subject) +
-            '&body=' + encodeURIComponent(linhas);
-          showSuccess();
-        });
+        .then(function (data) {
+          if (data && (data.success === 'true' || data.success === true)) { showSuccess(); }
+          else { showError(); }
+        })
+        .catch(function () { showError(); });
     });
   })();
 
