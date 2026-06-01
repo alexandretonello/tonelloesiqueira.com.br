@@ -547,6 +547,7 @@
     </div>
 
     <form class="form" id="contactForm">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
       <div class="form-field">
         <label>Nome completo</label>
         <input type="text" name="nome" placeholder="Seu nome" required />
@@ -629,11 +630,58 @@
     if (!wasOpen) item.classList.add('open');
   });
 
-  // Contact form -> success state
-  document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    this.innerHTML = '<div class="form-success"><div class="check">✓</div><h3>Recebido. Obrigado.</h3><p>Um dos sócios responde pessoalmente para agendar a conversa.</p></div>';
-  });
+  // Contact form -> envia via FormSubmit (sem servidor) e mostra estado de sucesso.
+  (function () {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var to = 'contato' + '@' + 'tonelloesiqueira.com.br';
+
+    function showSuccess() {
+      form.innerHTML = '<div class="form-success"><div class="check">\u2713</div><h3>Recebido. Obrigado.</h3><p>Um dos s\u00f3cios responde pessoalmente para agendar a conversa.</p></div>';
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var nome = (form.nome && form.nome.value) || '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Enviando\u2026'; }
+
+      var payload = {
+        Nome: nome,
+        Empresa: (form.empresa && form.empresa.value) || '',
+        'E-mail': (form.email && form.email.value) || '',
+        Telefone: (form.telefone && form.telefone.value) || '',
+        Objetivo: (form.objetivo && form.objetivo.value) || '',
+        Mensagem: (form.mensagem && form.mensagem.value) || '',
+        _subject: 'Novo contato pelo site \u2014 ' + (nome || 'sem nome'),
+        _template: 'table'
+      };
+
+      fetch('https://formsubmit.co/ajax/' + to, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function () { showSuccess(); })
+        .catch(function () {
+          // Fallback: abre o programa de e-mail do visitante j\u00e1 preenchido.
+          var linhas = [
+            'Nome: ' + payload.Nome,
+            'Empresa: ' + payload.Empresa,
+            'E-mail: ' + payload['E-mail'],
+            'Telefone: ' + payload.Telefone,
+            'Objetivo: ' + payload.Objetivo,
+            '',
+            payload.Mensagem
+          ].join('\n');
+          window.location.href = 'mailto:' + to +
+            '?subject=' + encodeURIComponent(payload._subject) +
+            '&body=' + encodeURIComponent(linhas);
+          showSuccess();
+        });
+    });
+  })();
 
   // E-mail montado em runtime — evita que o "Email Obfuscation" da Cloudflare quebre o endereço.
   // NÃO escrever o e-mail literal no HTML.
