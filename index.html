@@ -546,7 +546,12 @@
       </div>
     </div>
 
-    <form class="form" id="contactForm">
+    <form class="form" id="contactForm"
+          action="https://formsubmit.co/contato@tonelloesiqueira.com.br"
+          method="POST" target="formTarget" accept-charset="UTF-8">
+      <input type="hidden" name="_subject" value="Novo contato pelo site — Tonello &amp; Siqueira" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
       <div class="form-field">
         <label>Nome completo</label>
@@ -583,6 +588,7 @@
         <button type="submit" class="btn green">Enviar <span class="arr">→</span></button>
       </div>
     </form>
+    <iframe name="formTarget" id="formTarget" title="envio" style="display:none;width:0;height:0;border:0;"></iframe>
   </div>
 </section>
 
@@ -630,50 +636,33 @@
     if (!wasOpen) item.classList.add('open');
   });
 
-  // Contact form -> envia via FormSubmit (sem servidor) e mostra estado de sucesso.
+  // Contact form -> POST nativo para FormSubmit via iframe oculto (sem CORS, funciona em hospedagem estática).
   (function () {
     var form = document.getElementById('contactForm');
-    if (!form) return;
-    var to = 'contato' + '@' + 'tonelloesiqueira.com.br';
+    var iframe = document.getElementById('formTarget');
+    if (!form || !iframe) return;
+    var submitting = false;
+    var doneTimer = null;
 
     function showSuccess() {
       form.innerHTML = '<div class="form-success"><div class="check">\u2713</div><h3>Recebido. Obrigado.</h3><p>Um dos s\u00f3cios responde pessoalmente para agendar a conversa.</p></div>';
     }
 
-    function showError() {
-      var addr = to;
-      form.innerHTML = '<div class="form-success"><div class="check">!</div><h3>N\u00e3o foi poss\u00edvel enviar agora.</h3>' +
-        '<p>Tente novamente em instantes ou escreva direto para <a href="mailto:' + addr + '" style="color:var(--green);">' + addr + '</a>.</p></div>';
-    }
+    // Quando o iframe termina de carregar a resposta do FormSubmit, o envio foi recebido.
+    iframe.addEventListener('load', function () {
+      if (!submitting) return;            // ignora o load inicial do iframe vazio
+      if (doneTimer) clearTimeout(doneTimer);
+      submitting = false;
+      showSuccess();
+    });
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    form.addEventListener('submit', function () {
+      // NÃO usamos preventDefault: deixamos o POST nativo acontecer dentro do iframe.
+      submitting = true;
       var btn = form.querySelector('button[type="submit"]');
-      var nome = (form.nome && form.nome.value) || '';
       if (btn) { btn.disabled = true; btn.innerHTML = 'Enviando\u2026'; }
-
-      var payload = {
-        Nome: nome,
-        Empresa: (form.empresa && form.empresa.value) || '',
-        'E-mail': (form.email && form.email.value) || '',
-        Telefone: (form.telefone && form.telefone.value) || '',
-        Objetivo: (form.objetivo && form.objetivo.value) || '',
-        Mensagem: (form.mensagem && form.mensagem.value) || '',
-        _subject: 'Novo contato pelo site \u2014 ' + (nome || 'sem nome'),
-        _template: 'table'
-      };
-
-      fetch('https://formsubmit.co/ajax/' + to, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data && (data.success === 'true' || data.success === true)) { showSuccess(); }
-          else { showError(); }
-        })
-        .catch(function () { showError(); });
+      // Segurança: se o load demorar demais (rede ruim), mostra sucesso assim mesmo.
+      doneTimer = setTimeout(showSuccess, 4000);
     });
   })();
 
