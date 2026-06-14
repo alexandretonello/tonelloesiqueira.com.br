@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Avisos Legais — Tonello & Siqueira</title>
+<meta name="description" content="Avisos legais da Tonello & Siqueira: privacidade, confidencialidade e termos de uso." />
+<link rel="icon" type="image/png" href="avatar.png" />
+<link rel="apple-touch-icon" href="avatar.png" />
+<style>
+  :root {
+    --blue: #194E7C;
+    --blue-deep: #0E3354;
+    --green: #B0863C;
+    --green-deep: #8A6A2E;
+    --ink: #1A2733;
+    --mute: #586573;
+    --paper: #FFFFFF;
+    --alt: #F4F7F8;
+    --line: rgba(26,39,51,.12);
+    --line-strong: rgba(26,39,51,.22);
+    --line-dark: rgba(255,255,255,.16);
+    --serif: Georgia, "Times New Roman", "Times", serif;
+    --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --container: 880px;
+    --pad: clamp(20px, 4vw, 56px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--serif); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .wordmark { font-family: var(--serif); font-size: 22px; letter-spacing: 0.01em; display: inline-flex; align-items: baseline; }
+  .wordmark .amp { font-style: italic; color: var(--green); padding: 0 5px; }
+  .wordmark .sub { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-left: 12px; align-self: center; }
+  .nav-back { font-family: var(--sans); font-size: 14px; color: var(--ink); display: inline-flex; align-items: center; gap: 7px; }
+  .nav-back:hover { color: var(--blue); }
+
+  /* header */
+  .legal-head { padding: clamp(56px, 8vw, 96px) 0 clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--green); }
+  .h-display { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 6vw, 68px); line-height: 1.04; letter-spacing: -0.015em; margin: 0; }
+  .h-display i { font-style: italic; color: var(--green); }
+  .legal-intro { font-size: 17px; color: var(--mute); margin: 22px 0 0; max-width: 60ch; }
+
+  /* toc */
+  .legal-toc { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; }
+  .legal-toc a { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 16px; transition: background .18s, border-color .18s, color .18s; }
+  .legal-toc a:hover { background: var(--alt); border-color: var(--blue); color: var(--blue); }
+
+  /* sections */
+  .legal-body { padding: clamp(40px, 6vw, 72px) 0 clamp(56px, 8vw, 96px); }
+  .legal-sec { padding: clamp(32px, 4vw, 48px) 0; border-bottom: 1px solid var(--line); scroll-margin-top: 90px; }
+  .legal-sec:last-child { border-bottom: 0; }
+  .legal-num { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--green); margin-bottom: 14px; }
+  .legal-sec h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+  .legal-sec h2 i { font-style: italic; color: var(--green); }
+  .legal-sec p { font-size: 16.5px; line-height: 1.72; color: #36404C; margin: 0 0 18px; max-width: 66ch; }
+  .legal-sec p:last-child { margin-bottom: 0; }
+  .legal-note { font-size: 15px; color: var(--mute); font-style: italic; border-left: 2px solid var(--green); padding-left: 18px; margin-top: 24px; max-width: 64ch; }
+
+  /* footer */
+  .footer { background: var(--blue-deep); color: #DCE6EC; padding: 56px 0 28px; }
+  .footer-inner { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+  .footer-top { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; padding-bottom: 36px; border-bottom: 1px solid var(--line-dark); }
+  .footer .wordmark { font-size: 24px; }
+  .footer .wordmark .sub { color: rgba(220,230,236,.6); }
+  .footer-back { font-family: var(--sans); font-size: 14px; color: rgba(220,230,236,.8); }
+  .footer-back:hover { color: #fff; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; padding-top: 24px; font-family: var(--sans); font-size: 12.5px; color: rgba(220,230,236,.55); }
+  .footer-legal { display: flex; align-items: center; gap: 10px; }
+  .footer-legal a { color: rgba(220,230,236,.6); }
+  .footer-legal a:hover { color: #fff; }
+  .footer-legal span { color: rgba(220,230,236,.35); }
+
+  @media (max-width: 640px) {
+    .nav-inner .wordmark .sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark">Tonello<span class="amp">&amp;</span>Siqueira<span class="sub">Valuation de PMEs</span></a>
+    <a href="index.html" class="nav-back">← Voltar ao site</a>
+  </div>
+</nav>
+
+<header class="legal-head">
+  <div class="container">
+    <div class="eyebrow">Avisos legais</div>
+    <h1 class="h-display">Avisos <i>Legais.</i></h1>
+    <p class="legal-intro">
+      Este site tem caráter institucional e informativo. Reunimos abaixo as
+      informações sobre privacidade, confidencialidade e os termos de uso do conteúdo.
+    </p>
+    <nav class="legal-toc">
+      <a href="#privacidade">Privacidade</a>
+      <a href="#confidencialidade">Confidencialidade</a>
+      <a href="#termos">Termos de Uso</a>
+    </nav>
+  </div>
+</header>
+
+<main class="legal-body">
+  <div class="container">
+
+    <section class="legal-sec" id="privacidade">
+      <div class="legal-num">01</div>
+      <h2>Privacidade</h2>
+      <p>
+        Este site tem caráter institucional e informativo. Não coletamos,
+        armazenamos ou tratamos dados pessoais por meio dele: não há formulários
+        de cadastro nem captura automática de informações de contato. O botão de
+        contato apenas abre o aplicativo de e-mail do próprio usuário, direcionado
+        ao nosso endereço — o envio parte do usuário, por sua iniciativa.
+      </p>
+      <p>
+        As informações que você nos enviar por e-mail são utilizadas exclusivamente
+        para responder ao contato e avaliar um eventual trabalho, e não são
+        compartilhadas com terceiros. O tratamento de dados no âmbito de um projeto
+        contratado é regido por contrato e por acordo de confidencialidade próprios,
+        firmados antes de qualquer troca de informação sensível.
+      </p>
+    </section>
+
+    <section class="legal-sec" id="confidencialidade">
+      <div class="legal-num">02</div>
+      <h2>Confidencialidade</h2>
+      <p>
+        A confidencialidade é um princípio central do nosso trabalho. As informações
+        compartilhadas em um primeiro contato são tratadas com sigilo e utilizadas
+        apenas para compreender a demanda e avaliar o escopo de um eventual trabalho.
+      </p>
+      <p>
+        A relação formal de confidencialidade é estabelecida por um acordo específico
+        (NDA), firmado antes de qualquer troca de informação sensível sobre o negócio.
+        A partir daí, dados financeiros, operacionais e estratégicos do cliente e de
+        eventuais contrapartes são protegidos nos termos desse acordo e não são
+        divulgados a terceiros.
+      </p>
+    </section>
+
+    <section class="legal-sec" id="termos">
+      <div class="legal-num">03</div>
+      <h2>Termos de Uso</h2>
+      <p>
+        O conteúdo deste site — incluindo textos, artigos e materiais publicados —
+        tem finalidade exclusivamente informativa e não constitui aconselhamento
+        financeiro, contábil, jurídico ou recomendação de investimento. Nenhuma
+        informação aqui apresentada substitui uma análise técnica formal.
+      </p>
+      <p>
+        Os laudos, avaliações e pareceres da Tonello &amp; Siqueira são elaborados sob
+        contrato específico e refletem estimativas técnicas fundamentadas, sujeitas às
+        premissas e limitações descritas em cada trabalho. Não constituem garantia de
+        valor de realização nem compromisso de fechamento de qualquer negócio.
+      </p>
+      <p>
+        Todo o conteúdo deste site é de propriedade da Tonello &amp; Siqueira e de seus
+        sócios, protegido pela legislação de direitos autorais. A reprodução total ou
+        parcial depende de autorização prévia.
+      </p>
+      <p>
+        O uso deste site implica a concordância com estes termos.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="wordmark">Tonello<span class="amp" style="color:#D4AF6A;">&amp;</span>Siqueira<span class="sub">Valuation de PMEs</span></a>
+      <a href="index.html" class="footer-back">← Voltar ao site</a>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Tonello &amp; Siqueira</div>
+      <div class="footer-legal">
+        <a href="#privacidade">Privacidade</a>
+        <span>·</span>
+        <a href="#confidencialidade">Confidencialidade</a>
+        <span>·</span>
+        <a href="#termos">Termos de Uso</a>
+      </div>
+      <div>Brasil</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
