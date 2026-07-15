@@ -1,7 +1,7 @@
 # Tonello & Siqueira
 
 Site institucional da **Tonello & Siqueira** — boutique brasileira de valuation,
-assessoria em compra e venda de empresas e perícia judicial para pequenas e médias empresas.
+intermediação da compra e venda de empresas e perícia judicial para pequenas e médias empresas.
 
 🌐 **https://www.tonelloesiqueira.com.br**
 
@@ -10,7 +10,10 @@ assessoria em compra e venda de empresas e perícia judicial para pequenas e mé
 | Arquivo | Função |
 |---|---|
 | `index.html` | A página completa (HTML, CSS e JavaScript em um único arquivo) |
+| `legal.html` | Página legal — privacidade, confidencialidade e termos de uso |
 | `CNAME` | Domínio personalizado do GitHub Pages (`www.tonelloesiqueira.com.br`) |
+| `avatar.png` | Imagem de perfil / ícone do site |
+| `og-image.png` | Imagem de compartilhamento (Open Graph / redes sociais) |
 | `.nojekyll` | Arquivo **vazio** que desativa o processamento Jekyll do GitHub Pages |
 | `README.md` | Este arquivo |
 
@@ -20,7 +23,7 @@ assessoria em compra e venda de empresas e perícia judicial para pequenas e mé
 
 ## Publicação (GitHub Pages)
 
-1. Os quatro arquivos acima ficam na **raiz** do repositório (não dentro de pastas).
+1. Os arquivos acima ficam na **raiz** do repositório (não dentro de pastas).
 2. **Settings → Pages → Branch: `main` / `(root)` → Save.**
 3. Em **Custom domain**, confirmar `www.tonelloesiqueira.com.br` e marcar **Enforce HTTPS**.
 
@@ -28,7 +31,7 @@ O DNS (registros A do GitHub Pages e roteamento) é gerenciado via **Cloudflare*
 
 ## Contato
 
-A seção de contato usa um botão **"Entre em contato"** que abre o aplicativo de
+A seção de contato usa um botão **"Falar conosco"** que abre o aplicativo de
 e-mail do visitante já endereçado para `contato@tonelloesiqueira.com.br`, com o
 assunto preenchido. Não há formulário nem serviço externo — nada que possa ficar
 fora do ar.

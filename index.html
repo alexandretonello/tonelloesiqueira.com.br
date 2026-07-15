@@ -4,20 +4,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Tonello & Siqueira — Valuation de PMEs</title>
-<meta name="description" content="Boutique brasileira de valuation para pequenas e médias empresas. Laudos por DCF e múltiplos, assessoria na venda e perícia — conduzidos pelos sócios." />
+<meta name="description" content="Boutique brasileira para pequenas e médias empresas. Intermediação da compra e venda e avaliação de empresas (valuation) por DCF e múltiplos — conduzidas pelos sócios, com atendimento pessoal e sigilo." />
 <link rel="canonical" href="https://www.tonelloesiqueira.com.br/" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:site_name" content="Tonello & Siqueira" />
 <meta property="og:title" content="Tonello & Siqueira — Valuation de PMEs" />
-<meta property="og:description" content="Boutique brasileira de valuation para pequenas e médias empresas. Laudos técnicos por DCF e múltiplos, assessoria na venda e perícia — conduzidos diretamente pelos sócios." />
+<meta property="og:description" content="Boutique brasileira para pequenas e médias empresas. Intermediação da compra e venda e avaliação de empresas (valuation) por DCF e múltiplos — conduzidas diretamente pelos sócios, com atendimento pessoal e sigilo." />
 <meta property="og:url" content="https://www.tonelloesiqueira.com.br/" />
 <meta property="og:image" content="https://www.tonelloesiqueira.com.br/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Tonello & Siqueira — Valuation de PMEs" />
-<meta name="twitter:description" content="Boutique brasileira de valuation para pequenas e médias empresas. Laudos técnicos por DCF e múltiplos, assessoria na venda e perícia." />
+<meta name="twitter:description" content="Boutique brasileira para pequenas e médias empresas. Intermediação da compra e venda e avaliação de empresas (valuation) — conduzidas pelos sócios, com atendimento pessoal e sigilo." />
 <meta name="twitter:image" content="https://www.tonelloesiqueira.com.br/og-image.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="avatar.png?v=2" />
 <link rel="shortcut icon" href="avatar.png?v=2" />
@@ -181,7 +181,7 @@
   .svc-q { font-family: var(--serif); font-style: italic; line-height: 1.32; color: var(--blue); }
   .svc-anchor .svc-q { font-size: 25px; margin: 0 0 18px; }
   .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
     border-left: 1px solid var(--line);
   }
   .svc { padding: 32px 30px 36px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--paper); transition: background .18s; }
@@ -314,6 +314,10 @@
   /* ── responsive ─────────────────────── */
   @media (max-width: 920px) {
     .nav-links { display: none; }
+    .nav-inner { height: 62px; }
+    .wordmark { font-size: 20px; }
+    .wordmark .sub { display: none; }
+    .nav-cta { padding: 8px 15px; font-size: 13px; gap: 6px; }
     .hero { min-height: 0; }
     .hero-copy { padding: clamp(72px, 18vw, 120px) 0; }
     .hero-title { max-width: none; }
@@ -333,6 +337,11 @@
     .contact { grid-template-columns: 1fr; gap: 38px; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .form { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 400px) {
+    .wordmark { font-size: 18px; }
+    .nav-cta { padding: 7px 12px; font-size: 12.5px; }
+    .nav-cta .arr { display: none; }
   }
   .blog-band .eyebrow.on-dark { color:#F6EFDD; }
   .blog-band .eyebrow.on-dark::before { background:#F6EFDD; }
@@ -371,11 +380,12 @@
       <h1 class="h-display hero-title">Quanto vale, <i>de verdade,</i> a sua empresa.</h1>
       <p class="lead hero-sub">
         Tonello &amp; Siqueira é uma boutique brasileira de valuation para pequenas
-        e médias empresas. Emitimos laudos técnicos, assessoramos na venda do
-        negócio e estruturamos a tese de valor que sustenta a sua próxima decisão.
+        e médias empresas. Para o momento de vender, suceder ou resolver uma
+        sociedade — com o rigor técnico, o atendimento pessoal e o sigilo que
+        a decisão exige.
       </p>
       <div class="hero-ctas">
-        <a href="#" class="btn green js-mailcta">Entre em contato <span class="arr">→</span></a>
+        <a href="#" class="btn green js-mailcta">Falar conosco <span class="arr">→</span></a>
         <a href="#processo" class="btn ghost">Conhecer o método</a>
       </div>
       <p class="hero-confid">As informações compartilhadas neste contato são tratadas com confidencialidade.</p>
@@ -394,38 +404,30 @@
       </div>
       <p class="lead">
         Trabalhamos com PMEs em momentos de inflexão — venda, sucessão,
-        entrada ou saída de sócio. Cada entrega é desenhada para sustentar
-        uma decisão importante com segurança e transparência.
+        entrada ou saída de sócio. Cada trabalho é conduzido pelos próprios
+        sócios, com atendimento pessoal, sigilo e uma entrega sob medida —
+        do primeiro contato ao fechamento. Nada é automatizado.
       </p>
     </div>
     <div class="svc-anchor">
       <div>
         <div class="svc-num">01</div>
-        <h3 class="svc-title">Laudo de avaliação</h3>
+        <h3 class="svc-title">Intermediação para compra e venda de negócio</h3>
       </div>
       <div>
-        <p class="svc-q">“Quanto vale, de verdade, e como sustento esse número?”</p>
-        <p class="svc-desc">Laudo técnico de valuation que estabelece o valor do negócio com método e profundidade. Combina Fluxo de Caixa Descontado (DCF) e múltiplos de mercado, com memória de cálculo transparente e faixa de valor defensável. É o documento que sustenta uma venda, uma sucessão, a entrada ou saída de um sócio ou uma disputa societária — e que se mantém de pé sob questionamento.</p>
+        <p class="svc-desc">Conduzimos a compra e venda do negócio de ponta a ponta, pelos próprios sócios e sob sigilo: preço ancorado na avaliação, materiais de apresentação, abordagem direcionada a compradores qualificados e apoio à negociação até o fechamento. É uma condução reservada e sob medida, feita por relacionamento e atendimento pessoal — o negócio não é anunciado em vitrine, é apresentado, com discrição, a quem realmente interessa. A avaliação da empresa está incluída.</p>
       </div>
     </div>
     <div class="services-grid">
       <div class="svc">
         <div class="svc-num">02</div>
-        <h3 class="svc-title">Diagnóstico de valor</h3>
-        <p class="svc-q">“O que move o valor do meu negócio — e o que o trava?”</p>
-        <p class="svc-desc">Análise que identifica os fatores que criam e que destroem valor no negócio, com recomendações para fortalecer a empresa antes de uma venda ou transição. Um passo preparatório que costuma anteceder o laudo.</p>
+        <h3 class="svc-title">Avaliação de Empresas (Valuation)</h3>
+        <p class="svc-desc">Avaliamos o valor do negócio com método e profundidade. Partimos de um diagnóstico estruturado — dependência do sócio, concentração de clientes, qualidade do financeiro — e combinamos Fluxo de Caixa Descontado (DCF) e múltiplos de mercado sobre EBITDA normalizado. A entrega é um Memo personalizado com os resultados da modelagem: memória de cálculo, faixa de valor em três cenários e sensibilidade. Um documento que se mantém de pé sob questionamento — de comprador, sócio ou juízo.</p>
       </div>
       <div class="svc">
         <div class="svc-num">03</div>
-        <h3 class="svc-title">Assessoria na venda</h3>
-        <p class="svc-q">“Como conduzo a venda sem perder valor no caminho?”</p>
-        <p class="svc-desc">Acompanhamento na preparação e na condução da venda do negócio — definição de preço, materiais de apresentação, abordagem de interessados e apoio à negociação, sempre ancorado no valor estabelecido em laudo.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-num">04</div>
         <h3 class="svc-title">Perícia judicial</h3>
-        <p class="svc-q">“Preciso de uma avaliação que se sustente em juízo.”</p>
-        <p class="svc-desc">Atuação como perito ou assistente técnico em processos que envolvem avaliação de empresas — apuração de haveres, dissolução de sociedade e disputas societárias. O mesmo rigor do laudo, aplicado ao contexto judicial.</p>
+        <p class="svc-desc">Atuação como perito ou assistente técnico em processos que envolvem avaliação de empresas — apuração de haveres, dissolução de sociedade e disputas societárias. O mesmo rigor da avaliação, aplicado ao contexto judicial.</p>
       </div>
     </div>
   </div>
@@ -441,7 +443,7 @@
       </div>
       <p class="lead">
         Um processo claro, conduzido diretamente pelos sócios. Você fala com
-        quem assina o laudo — do primeiro contato até a entrega do parecer.
+        quem assina a avaliação — do primeiro contato até a entrega do Memo.
       </p>
     </div>
 
@@ -513,7 +515,7 @@
         <button class="proc-head">
           <span class="process-num">04</span>
           <span class="proc-head-main">
-            <span class="process-title">Laudo <i>técnico</i></span>
+            <span class="process-title">Memo <i>de avaliação</i></span>
             <span class="proc-obj">Emitir o parecer e entregar</span>
           </span>
           <span class="proc-plus"></span>
@@ -521,12 +523,12 @@
         <div class="proc-panel">
           <div class="proc-panel-inner">
             <ul>
-              <li>Laudo técnico escrito, com parecer fundamentado sobre o valor da empresa</li>
+              <li>Memo de avaliação escrito, com parecer fundamentado sobre o valor da empresa</li>
               <li>Memória de cálculo transparente — premissas, metodologia e fontes documentadas</li>
               <li>Faixa de valor com cenários e análise de sensibilidade das principais variáveis</li>
               <li>Posicionamento do negócio frente ao mercado e aos múltiplos do setor</li>
               <li>Perspectiva do comprador: forças, riscos e fatores de valor a destacar na negociação</li>
-              <li>Apresentação dos resultados e leitura do laudo conduzida por um dos sócios</li>
+              <li>Apresentação dos resultados e leitura do Memo conduzida por um dos sócios</li>
             </ul>
           </div>
         </div>
@@ -563,8 +565,8 @@
           atuação no Brasil, na América Latina e na África. Foi CFO de uma sociedade
           binacional no Uruguai e conduziu valuations de leilões de energia. À frente da
           <a href="https://www.tonelloadvisory.com.br" target="_blank" rel="noopener" style="color:var(--blue); text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px;">Tonello Advisory</a>, sua consultoria de modelagem e valuation de projetos de energia,
-          desenvolveu o rigor analítico que hoje sustenta os modelos financeiros e os
-          laudos da Tonello &amp; Siqueira.
+          desenvolveu o rigor analítico que hoje sustenta os modelos financeiros e as
+          avaliações da Tonello &amp; Siqueira.
         </p>
         <p class="partner-bio">
           Sua formação se estende a programas executivos em algumas das principais
@@ -589,8 +591,8 @@
           especialista em compra e venda de empresas, Felipe dedica-se à intermediação
           de negócios, tendo assessorado dezenas de transações. Seu método de atuação
           abrange desde a avaliação inicial e a preparação da empresa para venda até o
-          fechamento da transação, com foco em segurança e transparência para quem compra
-          e para quem vende.
+          fechamento da transação, com foco na discrição e no melhor valor para quem
+          vende.
         </p>
         <p class="partner-bio">
           Sua formação se estende a Valuation e Finanças pela FIPECAFI, instituição de
@@ -641,8 +643,8 @@
 
     <div class="faq-list" id="faqList">
       <div class="faq-item open">
-        <button class="faq-q">Para que serve um laudo de avaliação?<span class="plus"></span></button>
-        <div class="faq-a">Para dar base técnica e defensável ao valor de uma empresa. Ele traduz os números do negócio em uma faixa de valor fundamentada — o documento que sustenta uma negociação, uma decisão societária ou um pedido judicial com muito mais segurança do que uma estimativa de bolso.</div>
+        <button class="faq-q">Para que serve uma avaliação de empresa?<span class="plus"></span></button>
+        <div class="faq-a">Para dar base técnica e defensável ao valor de uma empresa. Ela traduz os números do negócio em uma faixa de valor fundamentada — o documento que sustenta uma negociação, uma decisão societária ou um pedido judicial com muito mais segurança do que uma estimativa de bolso.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Quando faz sentido avaliar?<span class="plus"></span></button>
@@ -658,23 +660,23 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">O que está incluído — e o que não está?<span class="plus"></span></button>
-        <div class="faq-a">A entrega é o laudo técnico, com memória de cálculo, faixa de valor em três cenários, o posicionamento do negócio frente ao mercado e a perspectiva do comprador. Não fazemos certificação técnica de premissas que exija profissional habilitado, auditoria ou perícia contábil, nem due diligence jurídica — quando necessárias, devem ser conduzidas por especialistas próprios.</div>
+        <div class="faq-a">A entrega é um Memo personalizado, com memória de cálculo, faixa de valor em três cenários, o posicionamento do negócio frente ao mercado e a perspectiva do comprador. Não fazemos certificação técnica de premissas que exija profissional habilitado, auditoria ou perícia contábil, nem due diligence jurídica — quando necessárias, devem ser conduzidas por especialistas próprios.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Como recebo o laudo?<span class="plus"></span></button>
-        <div class="faq-a">Um documento técnico escrito, com parecer fundamentado, premissas e fontes documentadas. A leitura dos resultados é conduzida pessoalmente por um dos sócios — você discute o valor com quem o assina.</div>
+        <button class="faq-q">Como recebo a avaliação?<span class="plus"></span></button>
+        <div class="faq-a">Em um Memo — documento escrito, com parecer fundamentado, premissas e fontes documentadas. A leitura dos resultados é conduzida pessoalmente por um dos sócios — você discute o valor com quem o assina.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">O laudo garante o preço de venda?<span class="plus"></span></button>
-        <div class="faq-a">Não. O laudo é uma estimativa técnica de valor, fundamentada em método e premissas declaradas. Estabelece uma faixa defensável para sustentar a negociação — não um preço garantido de realização nem compromisso de fechamento. Essa é a diferença entre um parecer sério e uma promessa.</div>
+        <button class="faq-q">A avaliação garante o preço de venda?<span class="plus"></span></button>
+        <div class="faq-a">Não. A avaliação é uma estimativa técnica de valor, fundamentada em método e premissas declaradas. Estabelece uma faixa defensável para sustentar a negociação — não um preço garantido de realização nem compromisso de fechamento. Essa é a diferença entre um parecer sério e uma promessa.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Serve para fins judiciais?<span class="plus"></span></button>
-        <div class="faq-a">Sim. Produzimos laudos e atuamos em perícia em apuração de haveres, dissolução de sociedade e disputas entre sócios. O parecer é estruturado para resistir a contestação técnica, com metodologia, premissas e fontes documentadas com clareza para o juízo e para as partes.</div>
+        <div class="faq-a">Sim. Produzimos avaliações e atuamos em perícia em apuração de haveres, dissolução de sociedade e disputas entre sócios. O parecer é estruturado para resistir a contestação técnica, com metodologia, premissas e fontes documentadas com clareza para o juízo e para as partes.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Vocês também conduzem a venda?<span class="plus"></span></button>
-        <div class="faq-a">Sim. Além do laudo, assessoramos na preparação e na condução da venda — definição de preço, materiais de apresentação, abordagem de interessados e apoio à negociação. São as duas frentes da casa: a modelagem do valor e a intermediação do negócio.</div>
+        <div class="faq-a">Sim — é o carro-chefe da casa. Conduzimos a compra e venda do negócio de ponta a ponta: definição de preço ancorada na avaliação, materiais de apresentação, abordagem direcionada a compradores qualificados, sob sigilo, e apoio à negociação. A venda é feita por abordagem reservada, não por anúncio em vitrine — e a avaliação da empresa já está incluída. São as duas frentes da casa: a modelagem do valor e a intermediação do negócio.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Como tratam a confidencialidade?<span class="plus"></span></button>
@@ -682,7 +684,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Como funcionam prazo e honorários?<span class="plus"></span></button>
-        <div class="faq-a">O trabalho segue quatro etapas — contato, diagnóstico, modelagem e laudo — e o prazo é acordado no início, conforme a complexidade e a disponibilidade das informações. Os honorários são fixados em valor fechado, com metade na contratação e metade na entrega do laudo.</div>
+        <div class="faq-a">O trabalho segue quatro etapas — contato, diagnóstico, modelagem e entrega do Memo — e o prazo é acordado no início, conforme a complexidade e a disponibilidade das informações. Os honorários da avaliação são fixados em valor fechado, com condições de pagamento flexíveis — à vista, com desconto, ou parceladas —, ajustadas caso a caso. A intermediação da venda combina um honorário de condução, parcelado ao longo do contrato, e uma taxa de êxito sobre o valor da transação — e já inclui a avaliação da empresa. As condições são definidas na proposta.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Atendem em todo o Brasil?<span class="plus"></span></button>
@@ -698,7 +700,7 @@
     <div class="footer-top">
       <div>
         <div class="wordmark">Tonello<span class="amp" style="color:#D4AF6A;">&amp;</span>Siqueira<span class="sub">Valuation de PMEs</span></div>
-        <p class="footer-tagline">Valuation e assessoria para empresas que estão prestes a tomar uma decisão importante.</p>
+        <p class="footer-tagline">Valuation e intermediação para empresas diante de uma decisão de peso.</p>
       </div>
       <div class="footer-col">
         <h4>Navegação</h4>
@@ -757,7 +759,7 @@
     });
   })();
 
-  // Botões/links "Entre em contato" / "Falar conosco" -> abrem o app de e-mail já endereçado, com assunto.
+  // Botões/links "Falar conosco" -> abrem o app de e-mail já endereçado, com assunto.
   // Montado em runtime para não ser quebrado pelo Email Obfuscation da Cloudflare.
   (function () {
     var addr = 'contato' + '@' + 'tonelloesiqueira.com.br';
